@@ -1,0 +1,135 @@
+=============================================================================
+  TODO FIREBASE — Configuration à créer
+=============================================================================
+
+Ce fichier contient les instructions pour configurer Firebase
+afin de gérer l'activation/désactivation des 3 sites.
+
+IMPORTANT : Ce travail doit être fait PLUS TARD.
+Pour l'instant, le admin fonctionne en mode dégradé (tous actifs).
+
+=============================================================================
+  ÉTAPE 1 : CRÉER LE PROJET FIREBASE
+=============================================================================
+
+1. Aller sur https://console.firebase.google.com
+2. Cliquer "Créer un projet"
+3. Nommer le projet (ex: "sites-clients-admin")
+4. Désactiver Google Analytics (pas besoin)
+5. Cliquer "Créer le projet"
+
+=============================================================================
+  ÉTAPE 2 : ACTIVER FIRESTORE
+=============================================================================
+
+1. Dans le menu gauche → "Firestore Database"
+2. Cliquer "Créer une base de données"
+3. Choisir "Mode test" (pour commencer)
+4. Choisir la région la plus proche
+5. Cliquer "Activer"
+
+=============================================================================
+  ÉTAPE 3 : CRÉER LES 3 DOCUMENTS DANS FIRESTORE
+=============================================================================
+
+Collection nommée : "sites"
+
+Document 1 : green-innovators
+  - nom: "Green Innovators SARL"
+  - url: "https://green-innovators.cm"
+  - actif: true
+  - description: "Solutions solaires Douala"
+  - dateModification: "2026-08-26"
+
+Document 2 : legetup
+  - nom: "LE GETUP - Cours Espagnol"
+  - url: "https://legetup.cm"
+  - actif: true
+  - description: "Cours répétition Yaoundé"
+  - dateModification: "2026-08-26"
+
+Document 3 : pgc-cleaners
+  - nom: "Professionnal Global Cleaners"
+  - url: "https://pgc-cleaners.cm"
+  - actif: true
+  - description: "Nettoyage Yaoundé Bonas"
+  - dateModification: "2026-08-26"
+
+=============================================================================
+  ÉTAPE 4 : RÉCUPÉRER LA CONFIG FIREBASE
+=============================================================================
+
+1. Aller dans "Paramètres du projet" (engrenage en haut à gauche)
+2. Cliquer "Votre app" → l'icône "</>"
+3. Nommer l'app (ex: "admin-panel")
+4. Copier la config et remplacer dans :
+   admin/js/firebase-config.js
+
+Exemple de config à copier :
+  const firebaseConfig = {
+    apiKey: "AIzaSy...",
+    authDomain: "ton-projet.firebaseapp.com",
+    projectId: "ton-projet-id",
+    storageBucket: "ton-projet.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "1:123456789:web:abcdef"
+  };
+
+=============================================================================
+  ÉTAPE 5 : CONFIGURER LES RÈGLES FIRESTORE
+=============================================================================
+
+Dans Firestore → onglet "Règles", coller :
+
+  rules_version = '2';
+  service cloud.firestore {
+    match /databases/{database}/documents {
+
+      // Lecture publique de la collection sites
+      match /sites/{siteId} {
+        allow read: if true;
+        allow write: if false;  // Écriture via console uniquement
+      }
+
+      // Tout le reste : interdit
+      match /{document=**} {
+        allow read, write: if false;
+      }
+    }
+  }
+
+Cliquer "Publier"
+
+=============================================================================
+  ÉTAPE 6 : TESTER
+=============================================================================
+
+1. Ouvrir admin/index.html dans le navigateur
+2. Vérifier que le statut affiche "Firebase connecté"
+3. Vérifier que les 3 sites affichent "● Actif"
+4. Dans la console Firestore, mettre actif=false sur un site
+5. Rafraîchir admin/index.html → le site devrait afficher "● Inactif"
+6. Cliquer sur le bouton → devrait rediriger vers error.html
+
+=============================================================================
+  POUR DÉSACTIVER UN SITE (PLUS TARD)
+=============================================================================
+
+1. Ouvrir la console Firebase
+2. Aller dans Firestore → collection "sites"
+3. Cliquer sur le document du site
+4. Modifier le champ "actif" de true à false
+5. Sauvegarder
+6. Le site est immédiatement inaccessible depuis le launcher
+
+=============================================================================
+  NOTES IMPORTANTES
+=============================================================================
+
+- Le mode "test" de Firestore permet 50 000 lectures/jour gratuitement
+- Pour la production, passer en mode "produit" (nécessite carte bancaire)
+- Les règles ci-dessus permettent la lecture publique mais bloquent l'écriture
+- L'écriture se fait uniquement via la console Firebase (pas depuis le site)
+- Si Firebase est indisponible, le launcher passe en mode dégradé (tous actifs)
+
+=============================================================================

@@ -1,0 +1,47 @@
+Microsoft Windows [version 10.0.19045.6466]
+(c) Microsoft Corporation. Tous droits réservés.
+
+C:\Users\MAMA NADY>gh auth login
+? Where do you use GitHub? GitHub.com
+? What is your preferred protocol for Git operations on this host? HTTPS
+? Authenticate Git with your GitHub credentials? Yes
+? How would you like to authenticate GitHub CLI? Login with a web browser
+
+! First copy your one-time code: 0F02-E5BD
+Press Enter to open https://github.com/login/device in your browser...
+✓ Authentication complete.
+- gh config set -h github.com git_protocol https
+✓ Configured git protocol
+✓ Logged in as c37950803-bit
+
+C:\Users\MAMA NADY>gh auth status
+github.com
+  ✓ Logged in to github.com account c37950803-bit (keyring)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: gho_************************************
+  - Token scopes: 'gist', 'read:org', 'repo', 'workflow'
+
+C:\Users\MAMA NADY>gh repo list
+
+Showing 4 of 4 repositories in @c37950803-bit
+
+NAME                                DESCRIPTION  INFO    UPDATED
+c37950803-bit/YT-ANALYTICS          HHHNCNGCBX   public  about 20 minutes ago
+c37950803-bit/ass                                public  about 3 days ago
+c37950803-bit/w                                  public  about 4 days ago
+c37950803-bit/world-weather-native               public  about 5 days ago
+
+C:\Users\MAMA NADY>gh repo list --json name,url --jq ".[] | .name + \" -> \" + .url"
+Accès refusé.
+
+C:\Users\MAMA NADY>gh repo list --template "{{range .}}{{.name}} -> {{.url}}{{\"\n\"}}{{end}}"
+cannot use `--template` without specifying `--json`
+
+C:\Users\MAMA NADY>gh repo list --json name,url --template "{{range .}}{{.name}} -> {{.url}}{{\"\n\"}}{{end}}"
+YT-ANALYTICS -> https://github.com/c37950803-bit/YT-ANALYTICS
+ass -> https://github.com/c37950803-bit/ass
+w -> https://github.com/c37950803-bit/w
+world-weather-native -> https://github.com/c37950803-bit/world-weather-native
+
+C:\Users\MAMA NADY>

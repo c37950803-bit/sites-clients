@@ -1,0 +1,327 @@
+=============================================================================
+  AVANT PYTHON — Ce que tu dois faire toi-même AVANT l'automatisation
+=============================================================================
+  Ce fichier est ta feuille de route.
+  Lis chaque étape, fais-la, puis passe à la suivante.
+  Quand tout est terminé, Python prend le relais.
+=============================================================================
+
+
+=============================================================================
+  PHASE 1 : VÉRIFIER / CRÉER UN COMPTE FIREBASE
+=============================================================================
+
+  1.1  Ouvre le navigateur (Chrome de préférence)
+
+  1.2  Va sur : https://console.firebase.google.com
+
+  1.3  Connecte-toi avec ton compte Google
+       (celui de ton Gmail habituel)
+
+  1.4  Évalue la situation :
+
+       CAS A : Tu vois la page "Firebase" avec un bouton "Créer un projet"
+       → Tu n'as pas encore de projet → passe à l'étape 2.1
+
+       CAS B : Tu vois déjà un ou plusieurs projets
+       → Tu as déjà un compte → passe à l'étape 2.1
+         (tu peux créer un NOUVEAU projet ou réutiliser un existant)
+
+       CAS C : Tu n'as PAS de compte Google
+       → Crée un compte Google d'abord sur https://accounts.google.com
+       → Ensuite reviens ici
+
+
+=============================================================================
+  PHASE 2 : CRÉER LE PROJET FIREBASE
+=============================================================================
+
+  2.1  Sur https://console.firebase.google.com
+       Clique le gros bouton "Créer un projet" (ou "+ Ajouter un projet")
+
+  2.2  Nomme le projet :
+       Suggestion : "sites-clients-admin"
+       (ce nom est juste pour toi, il n'est pas visible publiquement)
+
+  2.3  Google Analytics :
+       → Désactive l'option "Activer Google Analytics pour ce projet"
+       (on n'en a pas besoin)
+
+  2.4  Clique "Créer le projet"
+       → Attends 30 secondes que ça se charge
+
+  2.5  Quand c'est prêt, clique "Continuer"
+
+
+=============================================================================
+  PHASE 3 : ACTIVER FIRESTORE (la base de données)
+=============================================================================
+
+  3.1  Dans le menu de gauche, clique sur "Firestore Database"
+       (icône de base de données)
+
+  3.2  Clique "Créer une base de données"
+
+  3.3  Mode de sécurité :
+       → Sélectionne "Mode test"
+       (ce mode permet de lire/écrire sans règle complexe)
+       → On sécurisera plus tard
+
+  3.4  Région :
+       → Choisis la région la plus proche de toi
+       → "nam5 (us-central)" est un bon choix par défaut
+
+  3.5  Clique "Activer"
+
+  3.6  Attends que Firestore soit prêt (10-20 secondes)
+
+
+=============================================================================
+  PHASE 4 : CRÉER LES 3 DOCUMENTS DANS FIRESTORE
+=============================================================================
+
+  Ceci est la partie la plus importante.
+  Tu dois créer 3 "documents" dans la collection "sites".
+
+  4.1  Dans Firestore, tu vois une page vide avec "Créer une collection"
+       → Clique dessus
+
+  4.2  Nom de la collection : tape exactement :
+       sites
+       (tout en minuscule, sans espace, sans accent)
+
+  4.3  Clique "Suivant"
+
+  ─────────────────────────────────────────────────────────────────────────
+  DOCUMENT 1 : green-innovators
+  ─────────────────────────────────────────────────────────────────────────
+
+  4.4  ID du document : tape exactement :
+       green-innovators
+
+  4.5  Ajoute les champs un par un en cliquant "Ajouter un champ" :
+
+       Champ 1 :
+       → Nom : nom
+       → Type : string
+       → Valeur : Green Innovators SARL
+
+       Champ 2 :
+       → Nom : url
+       → Type : string
+       → Valeur : https://green-innovators.cm
+
+       Champ 3 :
+       → Nom : actif
+       → Type : boolean
+       → Valeur : ✅ VRAI (coché)
+
+       Champ 4 :
+       → Nom : description
+       → Type : string
+       → Valeur : Solutions solaires et energie photovoltaique - Douala
+
+       Champ 5 :
+       → Nom : dateModification
+       → Type : string
+       → Valeur : 2026-08-26
+
+  4.6  Clique "Enregistrer"
+
+  ─────────────────────────────────────────────────────────────────────────
+  DOCUMENT 2 : legetup
+  ─────────────────────────────────────────────────────────────────────────
+
+  4.7  Clique "Ajouter un document"
+
+  4.8  ID du document : tape exactement :
+       legetup
+
+  4.9  Ajoute les champs :
+
+       Champ 1 : nom → string → LE GETUP - Cours Espagnol
+       Champ 2 : url → string → https://legetup.cm
+       Champ 3 : actif → boolean → ✅ VRAI
+       Champ 4 : description → string → Cours de repetition et Espagnol - Yaounde
+       Champ 5 : dateModification → string → 2026-08-26
+
+  4.10 Clique "Enregistrer"
+
+  ─────────────────────────────────────────────────────────────────────────
+  DOCUMENT 3 : pgc-cleaners
+  ─────────────────────────────────────────────────────────────────────────
+
+  4.11 Clique "Ajouter un document"
+
+  4.12 ID du document : tape exactement :
+       pgc-cleaners
+
+  4.13 Ajoute les champs :
+
+       Champ 1 : nom → string → Professionnal Global Cleaners
+       Champ 2 : url → string → https://pgc-cleaners.cm
+       Champ 3 : actif → boolean → ✅ VRAI
+       Champ 4 : description → string → Nettoyage professionnel et demenagement - Yaounde Bonas
+       Champ 5 : dateModification → string → 2026-08-26
+
+  4.14 Clique "Enregistrer"
+
+  ═════════════════════════════════════════════════════════════════════════
+  VÉRIFICATION : Tu dois maintenant voir 3 documents dans la collection
+  "sites" : green-innovators, legetup, pgc-cleaners
+  ═════════════════════════════════════════════════════════════════════════
+
+
+=============================================================================
+  PHASE 5 : RÉCUPÉRER LES CLÉS API FIREBASE
+=============================================================================
+
+  5.1  En haut à gauche, clique sur l'engrenage ⚙️
+       → "Paramètres du projet"
+
+  5.2  Clique sur l'onglet "Général"
+
+  5.3  Descends jusqu'à la section "Vos applications"
+
+  5.4  Clique sur l'icône "</>" (Web)
+       → Ceci ajoute une "application web" à ton projet
+
+  5.5  Nomme l'app : "admin-panel"
+
+  5.6  Clique "Enregistrer l'app"
+
+  5.7  Tu vois maintenant un bloc de code avec la config Firebase :
+       const firebaseConfig = {
+         apiKey: "AIzaSy...",
+         ...
+       };
+
+  5.8  COPIE TOUT CE BLOC DE CODE
+       (sélectionne-le et Ctrl+C)
+
+  5.9  Ouvre le fichier :
+       admin/js/firebase-config.js
+
+  5.10 Remplace les placeholders par tes vraies valeurs :
+
+       AVANT (à remplacer) :
+       ─────────────────────
+       apiKey:            "REMPLACER_PAR_TA_CLE_API",
+       authDomain:        "REMPLACER_PAR ton-projet.firebaseapp.com",
+       projectId:         "REMPLACER_PAR ton-projet-id",
+       storageBucket:     "REMPLACER_PAR ton-projet.appspot.com",
+       messagingSenderId: "REMPLACER_PAR ton-sender-id",
+       appId:             "REMPLACER_PAR ton-app-id",
+
+       APRÈS (avec tes vraies clés) :
+       ──────────────────────────────
+       apiKey:            "AIzaSyBabc123...",
+       authDomain:        "sites-clients-admin.firebaseapp.com",
+       projectId:         "sites-clients-admin",
+       storageBucket:     "sites-clients-admin.appspot.com",
+       messagingSenderId: "123456789",
+       appId:             "1:123456789:web:abcdef123456",
+
+  5.11 Sauvegarde le fichier
+
+
+=============================================================================
+  PHASE 6 : TESTER QUE TOUT FONCTIONNE
+=============================================================================
+
+  6.1  Ouvre admin/index.html dans ton navigateur
+       (double-clique sur le fichier)
+
+  6.2  Regarde en haut à droite :
+       → Tu dois voir "Firebase connecté" avec un point vert
+
+  6.3  Regarde les 3 cartes :
+       → Chacune doit afficher "● Actif" en vert
+
+  6.4  Teste de désactiver un site :
+       → Va dans la console Firebase
+       → Ouvre le document "pgc-cleaners"
+       → Modifie le champ "actif" : passe de true à false
+       → Sauvegarde
+       → Rafraîchis admin/index.html
+       → La carte PGC doit afficher "● Inactif" en rouge
+
+  6.5  Clique sur le bouton "Ouvrir le site" de PGC
+       → Tu dois être redirigé vers error.html (page 404)
+
+
+=============================================================================
+  PHASE 7 : TESTER LES 3 SITES
+=============================================================================
+
+  7.1  Remets "actif: true" pour les 3 sites dans Firestore
+
+  7.2  Clique sur chaque bouton "Ouvrir le site" :
+       → Green Innovators s'ouvre dans un nouvel onglet
+       → LE GETUP s'ouvre dans un nouvel onglet
+       → PGC s'ouvre dans un nouvel onglet
+
+  7.3  Vérifie que sur chaque site :
+       → Il n'y a AUCUN lien vers admin
+       → Il n'y a AUCUN bouton retour
+       → Le site est complètement isolé
+
+
+=============================================================================
+  PHASE 8 : MAINTENANT PYTHON PREND LE RELAIS
+=============================================================================
+
+  Une fois les phases 1 à 7 terminées avec succès,
+  tu peux utiliser Python pour automatiser :
+
+  → Créer/modifier/supprimer des sites dans Firestore
+  → Activer/désactiver des sites en un clic
+  → Lire les statistiques de tes sites
+  → Tout ce que tu veux via Firebase Admin SDK
+
+  Pour lancer Python :
+  → Ouvre un terminal
+  → Va dans le dossier firebase/
+  → Lance le script que je te créerai
+
+
+=============================================================================
+  EN CAS DE PROBLÈME
+=============================================================================
+
+  PROBLÈME : "Firebase ne se connecte pas"
+  → Vérifie que les clés dans firebase-config.js sont correctes
+  → Vérifie qu'il n'y a pas d'erreur dans la console du navigateur (F12)
+
+  PROBLÈME : "Firestore ne charge pas"
+  → Vérifie que tu as bien activé Firestore (Phase 3)
+  → Vérifie que tu es dans le bon projet Firebase
+
+  PROBLÈME : "Les documents ne s'affichent pas"
+  → Vérifie que les IDs sont exactement : green-innovators, legetup, pgc-cleaners
+  → Vérifie que le champ "actif" est bien de type "boolean" (pas string)
+
+  PROBLÈME : "J'ai oublié si j'ai un compte Firebase"
+  → Va sur https://console.firebase.google.com
+  → Connecte-toi avec ton Gmail
+  → Si tu vois un projet → tu as un compte
+  → Si tu vois "Créer un projet" → tu n'en as pas encore
+
+
+=============================================================================
+  RÉCAPITULATIF RAPIDE
+=============================================================================
+
+  PHASE 1 → Vérifier/créer compte Google          (2 min)
+  PHASE 2 → Créer le projet Firebase               (3 min)
+  PHASE 3 → Activer Firestore                      (2 min)
+  PHASE 4 → Créer les 3 documents (sites)          (10 min)
+  PHASE 5 → Récupérer les clés API                 (5 min)
+  PHASE 6 → Tester admin.html                      (5 min)
+  PHASE 7 → Tester les 3 sites                     (5 min)
+  PHASE 8 → Python prend le relais                 (automatique)
+
+  TOTAL : environ 30 minutes de travail manuel
+
+
+=============================================================================

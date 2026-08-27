@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import "tailwindcss";
+
+:root {
+  --cols: 12;
+  --bl: 8px;
+  --lh: 24px;
+  --gutter: 24px;
+  --margin: 32px;
+  --maxw: 1280px;
+
+  --paper: #ffffff;
+  --ink: #111315;
+  --ink-soft: #5b6066;
+  --ink-muted: #8c9299;
+  --line: #e2e4e8;
+  --line-strong: #111315;
+  --accent: #e4002b; /* Müller-Brockmann Swiss Red */
+  --accent-hover: #c70025;
+
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background-color: var(--paper);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.font-mono {
+  font-family: 'Space Mono', monospace, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas;
+}
+
+/* Crisp Swiss hairline borders */
+.border-swiss {
+  border-color: var(--line);
+}
+
+.border-swiss-dark {
+  border-color: var(--line-strong);
+}
+
+/* Micro typography */
+.kicker {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Large typographic numerals */
+.numeral {
+  font-feature-settings: "tnum" 1, "ss01" 1;
+  letter-spacing: -0.03em;
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Focus states for accessibility */
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}

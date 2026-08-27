@@ -1,0 +1,27 @@
+<div class="min-h-screen flex flex-col bg-white text-[#111315] font-sans antialiased">
+  <!-- Minimalist Swiss Editorial Header -->
+  <app-header></app-header>
+
+  <!-- Main View -->
+  <main class="flex-1 w-full">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Editorial Colophon / Minimalist Swiss Sign-off (No heavy APK bottom bar or multi-layer footer) -->
+  <aside class="w-full border-t border-black/10 py-6 px-4 sm:px-8 max-w-[1280px] mx-auto text-xs text-[#5b6066] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono">
+    <div>
+      <span class="font-bold text-[#111315]">GREEN INNOVATORS SARL</span> — Douala, Cameroun.
+      <span class="block sm:inline sm:ml-2">Énergie Solaire & Pompage Agricole.</span>
+    </div>
+    <div class="flex items-center gap-4 text-[#8c9299]">
+      <span>Garantie 1 An Vérasol</span>
+      <span>•</span>
+      <span>Paiement Échelonné</span>
+      <span>•</span>
+      <a href="https://wa.me/237674047592" target="_blank" class="text-[#e4002b] hover:underline font-bold">WhatsApp Direct</a>
+    </div>
+  </aside>
+
+  <!-- Sliding Cart Drawer -->
+  <app-cart-drawer></app-cart-drawer>
+</div>

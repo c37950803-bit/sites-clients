@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-sand: #FDFCF0;
+    --border-sand: #E8E2D2;
+    --olive: #5A5A40;
+    --terracotta: #D97757;
+    --earth-dark: #2D2A26;
+    --earth-body: #433E37;
+  }
+}
+
+.font-serif-title {
+  font-family: 'Playfair Display', 'Newsreader', Georgia, serif;
+}
+
+.font-serif-italic {
+  font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+  font-style: italic;
+}

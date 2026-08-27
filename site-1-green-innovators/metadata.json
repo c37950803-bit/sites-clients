@@ -1,0 +1,6 @@
+{
+  "name": "Green Innovators SARL - Solaire Douala",
+  "description": "Boutique e-commerce et solutions d'énergie solaire au Cameroun par Green Innovators SARL (kits solaires, pompage, générateur PowerPlay, financement échelonné).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

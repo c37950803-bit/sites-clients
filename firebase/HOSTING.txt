@@ -1,0 +1,257 @@
+=============================================================================
+  MISE EN LIGNE & GESTION ACTIVE / INACTIF DES SITES
+=============================================================================
+
+
+=============================================================================
+  PARTIE 1 : MEILLEUR ENDROIT POUR LA MISE EN LIGNE
+=============================================================================
+
+  RECOMMANDATION : VERCEL (gratuit, rapide, simple)
+
+  Pourquoi Vercel ?
+  - Supporte Angular (SSR), React, HTML pur
+  - Depot GitHub = deploiement automatique
+  - Certificat SSL gratuit (HTTPS)
+  - 3 projets = 0 euro
+  - Interface simple et claire
+
+  Alternative : Firebase Hosting (gratuit, meme eco-systeme que Firestore)
+
+
+=============================================================================
+  PARTIE 2 : DEPLOIEMENT SUR VERCEL (recommande)
+=============================================================================
+
+  ETAPE 1 : CREER UN COMPTE VERCEL
+
+  1.1  Va sur https://vercel.com
+  1.2  Clique "Sign Up"
+  1.3  Connecte-toi avec ton compte GitHub
+  1.4  Autorise Vercel a acceder a tes repos
+
+
+  ETAPE 2 : CREER UN REPO GITHUB
+
+  2.1  Va sur https://github.com
+  2.2  Clique "New repository"
+  2.3  Nomme-le : "sites-clients"
+  2.4 Clique "Create repository"
+  2.5  Pousse ton code :
+
+       git init
+       git add .
+       git commit -m "Initial commit"
+       git remote add origin https://github.com/TON-USERNAME/sites-clients.git
+       git push -u origin master
+
+
+  ETAPE 3 : DEPLOYER L'ADMIN (admin/)
+
+  3.1  Dans Vercel, clique "Add New" -> "Project"
+  3.2  Selectionne le repo "sites-clients"
+  3.3  Configure :
+       - Framework Preset : "Other"
+       - Root Directory : admin
+       - Build Command : (laisser vide)
+       - Output Directory : .
+  3.4  Clique "Deploy"
+  3.5  Vercel te donne une URL : admin-tonsite.vercel.app
+  3.6  C'est TON URL SECRETE pour l'admin
+
+  Pour ajouter un domaine personnalise (optionnel) :
+  - Dans Vercel -> Settings -> Domains
+  - Ajoute : admin.green-innovators.cm
+  - Configure le DNS chez ton registrar
+
+
+  ETAPE 4 : DEPLOYER SITE 1 (site-1-green-innovators/)
+
+  4.1  Dans Vercel, "Add New" -> "Project"
+  4.2  Meme repo "sites-clients"
+  4.3  Configure :
+       - Framework Preset : "Angular"
+       - Root Directory : site-1-green-innovators
+       - Build Command : npm run build
+       - Output Directory : dist/app/browser
+  4.4  Clique "Deploy"
+  4.5  URL : green-innovators.vercel.app
+
+
+  ETAPE 5 : DEPLOYER SITE 2 (site-2-legetup/)
+
+  5.1  "Add New" -> "Project"
+  5.2  Configure :
+       - Framework Preset : "Vite"
+       - Root Directory : site-2-legetup
+       - Build Command : npm run build
+       - Output Directory : dist
+  5.3  Deploy
+  5.4  URL : legetup.vercel.app
+
+
+  ETAPE 6 : DEPLOYER SITE 3 (site-3-pgc-cleaners/)
+
+  6.1  "Add New" -> "Project"
+  6.2  Configure :
+       - Framework Preset : "Angular"
+       - Root Directory : site-3-pgc-cleaners
+       - Build Command : npm run build
+       - Output Directory : dist/app/browser
+  6.3  Deploy
+  6.4  URL : pgc-cleaners.vercel.app
+
+
+  RESULTAT FINAL :
+  ┌─────────────────────────────────────────────────────┐
+  │  admin-tonsite.vercel.app     -> Panel Admin        │
+  │  green-innovators.vercel.app  -> Site 1             │
+  │  legetup.vercel.app           -> Site 2             │
+  │  pgc-cleaners.vercel.app      -> Site 3             │
+  └─────────────────────────────────────────────────────┘
+
+
+=============================================================================
+  PARTIE 3 : CONFIGURER LES URLS DANS FIREBASE
+=============================================================================
+
+  Une fois deploye, mets a jour les URLs dans Firestore :
+
+  1.  Va dans Firebase Console -> Firestore Database
+  2.  Ouvre chaque document et modifie le champ "url" :
+
+      green-innovators :
+        url = https://green-innovators.vercel.app
+
+      legetup :
+        url = https://legetup.vercel.app
+
+      pgc-cleaners :
+        url = https://pgc-cleaners.vercel.app
+
+  3.  Sauvegarde chaque document
+
+
+=============================================================================
+  PARTIE 4 : ACTIVER / DESACTIVER UN SITE
+=============================================================================
+
+  METHODE 1 : VIA LA CONSOLE FIREBASE (recommande)
+
+  4.1  Ouvre https://console.firebase.google.com
+  4.2  Selectionne le projet "sites-clients-admin"
+  4.3  Dans le menu gauche, clique "Firestore Database"
+  4.4  Clique sur la collection "sites"
+  4.5  Clique sur le document du site a modifier
+  4.6  Cherche le champ "actif"
+  4.7  Clique sur la valeur :
+       - true  = site visible (bouton vert dans le panel)
+       - false = site cache (bouton rouge dans le panel)
+  4.8  Sauvegarde (Ctrl+S ou bouton Enregistrer)
+
+  EFFET IMMEDIAT :
+  - Le site reste en ligne (pas supprime)
+  - Dans le panel admin, le bouton passe au rouge
+  - Si quelqu'un clique sur le bouton inactif -> error.html
+  - Aucun impact sur les autres sites
+
+
+  METHODE 2 : VIA PYTHON (automatise)
+
+  Lance le script pour activer/desactiver :
+
+  # Desactiver le site PGC
+  python firebase_setup.py --site pgc-cleaners --actif false
+
+  # Reactiver le site PGC
+  python firebase_setup.py --site pgc-cleaners --actif true
+
+  # Voir le statut de tous les sites
+  python firebase_setup.py --status
+
+
+  METHODE 3 : VIA LE PANEL ADMIN (en cours de dev)
+
+  Plus tard, tu pourras ajouter des boutons ON/OFF
+  directement dans admin/index.html
+
+
+=============================================================================
+  PARTIE 5 : DONNER LES URLS AUX CLIENTS
+=============================================================================
+
+  Client 1 (Green Innovators) :
+  ┌─────────────────────────────────────────────────────┐
+  │  URL : https://green-innovators.vercel.app          │
+  │  Donne cette URL uniquement au client 1             │
+  └─────────────────────────────────────────────────────┘
+
+  Client 2 (LE GETUP) :
+  ┌─────────────────────────────────────────────────────┐
+  │  URL : https://legetup.vercel.app                   │
+  │  Donne cette URL uniquement au client 2             │
+  └─────────────────────────────────────────────────────┘
+
+  Client 3 (PGC Cleaners) :
+  ┌─────────────────────────────────────────────────────┐
+  │  URL : https://pgc-cleaners.vercel.app              │
+  │  Donne cette URL uniquement au client 3             │
+  └─────────────────────────────────────────────────────┘
+
+  Admin (toi) :
+  ┌─────────────────────────────────────────────────────┐
+  │  URL : https://admin-tonsite.vercel.app             │
+  │  NE DONNE JAMAIS CETTE URL A UN CLIENT              │
+  │  C'est ton panel de controle prive                  │
+  └─────────────────────────────────────────────────────┘
+
+
+=============================================================================
+  PARTIE 6 : EN CAS DE PROBLEME
+=============================================================================
+
+  PROBLEME : Le site ne se charge pas
+  → Verifie que le deploiement Vercel est "Ready" (pas "Error")
+  → Regarde les logs dans Vercel -> Deployments -> View Function Logs
+
+  PROBLEME : Firebase ne se connecte pas
+  → Verifie que les regles Firestore permettent la lecture
+  → Verifie que l'apiKey dans firebase-config.js est correcte
+
+  PROBLEME : Le bouton ne redirige pas vers error.html
+  → Verifie que le fichier error.html est dans le dossier admin/
+  → Verifie la console du navigateur (F12) pour les erreurs
+
+  PROBLEME : Un site est reste "inactif" et je ne sais pas pourquoi
+  → Va dans Firebase Console -> Firestore -> collection sites
+  → Verifie le champ "actif" du document concerne
+
+
+=============================================================================
+  RAPPEL : COMMENT CA MARCHE
+=============================================================================
+
+  ┌──────────────────────────────────────────────────────────────┐
+  │                                                              │
+  │  admin-tonsite.vercel.app                                    │
+  │  │                                                           │
+  │  │  Lit Firestore -> voit actif: true ou false               │
+  │  │                                                           │
+  │  ├── [Site 1] green-innovators.vercel.app (actif)           │
+  │  ├── [Site 2] legetup.vercel.app (actif)                    │
+  │  └── [Site 3] pgc-cleaners.vercel.app (inactif) -> 404      │
+  │                                                              │
+  └──────────────────────────────────────────────────────────────┘
+
+  Pour desactiver un site :
+  1. Firebase Console -> Firestore -> sites -> [nom du document]
+  2. Change "actif" de true a false
+  3. C'est fait, immediatement
+
+  Pour reactiver :
+  1. Meme manipulation
+  2. Change "actif" de false a true
+  3. C'est fait
+
+
+=============================================================================

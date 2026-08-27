@@ -1,0 +1,6 @@
+{
+  "name": "Professionnal Global Cleaners",
+  "description": "Site vitrine officiel de Professionnal Global Cleaners à Yaoundé (Bonas) : présentation des 8 services, sélection et contact direct WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

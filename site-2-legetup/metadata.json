@@ -1,0 +1,6 @@
+{
+  "name": "LE GETUP - Cours de Répétition et du Soir",
+  "description": "Plateforme officielle de réservation pour les cours de répétition et du soir LE GETUP (4ème, 3ème, 1ère, Terminale) à 10 000 FCFA. Résultats d'excellence 2026 et réservation directe.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

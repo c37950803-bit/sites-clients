@@ -1,0 +1,364 @@
+/* ==========================================================================
+   STYLE ÉDITORIAL & SYSTÈME DE GRILLE SUISSE (MÜLLER-BROCKMANN)
+   POUR : PROFESSIONNAL GLOBAL CLEANERS (YAOUNDÉ BONAS)
+   ==========================================================================
+   Ce fichier applique les principes du design suisse (International Typographic Style) :
+   - Structure mathématique rigoureuse et grille modulaire
+   - Typographie Grotesque (Inter) associée à une police à chasse fixe (Space Mono)
+   - Palette sobre et épurée : Papier Blanc (#fff), Encre Noire (#111315), 
+     Lignes fines (#e5e7eb) et Accent Émeraude (#059669 / WhatsApp #25d366)
+   - Espaces généreux (négatifs) pour une lecture fluide et reposante
+   - Zéro effet artificiel (pas de dégradés violents, pas d'images superflues)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VARIABLES DE BASE (SOURCE UNIQUE DE VÉRITÉ POUR LA MISE EN PAGE)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Unité de rythme vertical (Baseline 8px, Leading 24px) */
+  --bl: 8px;
+  --lh: 24px;
+  --max-content-width: 1200px;
+  
+  /* Polices typographiques */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Palette de couleurs éditoriale */
+  --paper: #ffffff;
+  --paper-subtle: #f8fafc;
+  --ink: #111315;
+  --ink-secondary: #4b5563;
+  --ink-muted: #9ca3af;
+  --border-hairline: #e5e7eb;
+  --border-strong: #111315;
+  
+  /* Accents de marque */
+  --emerald-primary: #059669;
+  --emerald-dark: #065f46;
+  --emerald-subtle: #ecfdf5;
+  --whatsapp-color: #25d366;
+  --whatsapp-dark: #1ebd5a;
+}
+
+/* --------------------------------------------------------------------------
+   2. RÉINITIALISATION ET BASE TYPOGRAPHIQUE
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: var(--lh);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Titres alignés à gauche avec échelle typographique franche */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 0;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: 2.75rem;
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+@media (min-width: 992px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+
+/* Éléments en police mono (numéros, folios, étiquettes techniques) */
+.font-mono, .badge-mono, .numeral-display, .folio {
+  font-family: var(--font-mono);
+}
+
+/* --------------------------------------------------------------------------
+   3. SECTIONS AÉRÉES & GRILLE DE MISE EN PAGE
+   -------------------------------------------------------------------------- */
+.editorial-container {
+  max-width: var(--max-content-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .editorial-container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* Espacement vertical généreux entre les grandes sections */
+.section-spacious {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 992px) {
+  .section-spacious {
+    padding-top: 6.5rem;
+    padding-bottom: 6.5rem;
+  }
+}
+
+/* Ligne de séparation hairline pure et minimaliste */
+.hairline-divider {
+  height: 1px;
+  background-color: var(--border-hairline);
+  border: none;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. COMPOSANTS DE SERVICES ÉDITORIALISÉS (01 À 08)
+   -------------------------------------------------------------------------- */
+
+/* Module de service individuel façon grille suisse */
+.service-module {
+  background-color: var(--paper);
+  border: 1px solid var(--border-hairline);
+  padding: 2.25rem 2rem;
+  transition: all 0.2s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  outline: none;
+}
+
+.service-module:hover {
+  border-color: var(--ink);
+  background-color: var(--paper-subtle);
+}
+
+/* État actif lorsque le service est sélectionné par le client */
+.service-module.is-selected {
+  border: 1.5px solid var(--emerald-primary);
+  background-color: var(--emerald-subtle);
+}
+
+/* Grand numéro de service éditorial (01, 02, etc.) */
+.service-numeral {
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.service-module.is-selected .service-numeral {
+  color: var(--emerald-primary);
+}
+
+/* Étiquette de catégorie technique */
+.service-category-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   5. BOUTONS & CONTRÔLES INTERACTIFS
+   -------------------------------------------------------------------------- */
+
+/* Bouton principal WhatsApp (Haute lisibilité) */
+.btn-editorial-whatsapp {
+  background-color: var(--whatsapp-color);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-editorial-whatsapp:hover, .btn-editorial-whatsapp:focus {
+  background-color: var(--whatsapp-dark);
+  color: #ffffff;
+}
+
+/* Bouton secondaire noir d'action directe */
+.btn-editorial-dark {
+  background-color: var(--ink);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid var(--ink);
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.btn-editorial-dark:hover {
+  background-color: #27272a;
+  color: #ffffff;
+}
+
+/* Bouton contour minimaliste */
+.btn-editorial-outline {
+  background-color: transparent;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-hairline);
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.btn-editorial-outline:hover {
+  border-color: var(--ink);
+  background-color: var(--paper-subtle);
+  color: var(--ink);
+}
+
+/* Bouton de sélection / désélection au sein d'une carte */
+.btn-toggle-select {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.35rem;
+  border: 1px solid var(--border-hairline);
+  background-color: transparent;
+  color: var(--ink);
+  transition: all 0.15s ease;
+}
+
+.btn-toggle-select:hover {
+  border-color: var(--ink);
+}
+
+.service-module.is-selected .btn-toggle-select {
+  background-color: var(--emerald-primary);
+  border-color: var(--emerald-primary);
+  color: #ffffff;
+}
+
+/* Bouton flottant WhatsApp */
+.floating-whatsapp-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1040;
+  background-color: var(--whatsapp-color);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 50rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.floating-whatsapp-btn:hover {
+  background-color: var(--whatsapp-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   6. GRILLE MODULAIRE MÜLLER-BROCKMANN (OVERLAY VISIBLE EN OPTION)
+   -------------------------------------------------------------------------- */
+.grid-overlay-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+body.grid-active .grid-overlay-container {
+  opacity: 1;
+}
+
+.grid-overlay-columns {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 1.5rem;
+  padding: 0 1.5rem;
+}
+
+.grid-overlay-col {
+  background-color: rgba(5, 150, 105, 0.04);
+  border-left: 1px solid rgba(5, 150, 105, 0.2);
+  border-right: 1px solid rgba(5, 150, 105, 0.2);
+  height: 100%;
+  position: relative;
+}
+
+.grid-overlay-col span {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--emerald-primary);
+}

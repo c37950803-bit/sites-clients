@@ -1,0 +1,263 @@
+=============================================================================
+  CONTEXTE ABSOLUE — Historique complet du projet
+  Date de creation : 2026-08-26 18:30:00
+=============================================================================
+
+Ce fichier documente TOUT ce qui a ete fait jusqu'a present.
+Toute IA ou tout developpeur lisant ce fichier saura exactement
+ou en est le projet, ce qui fonctionne, et ce qu'il reste a faire.
+
+
+=============================================================================
+  IDENTIFIANTS ET CLES
+=============================================================================
+
+  PROJET FIREBASE :
+  ─────────────────
+  Nom du projet    : sites-clients-admin
+  Project ID       : sites-clients-admin
+  Auth Domain      : sites-clients-admin.firebaseapp.com
+  Storage Bucket   : sites-clients-admin.firebasestorage.app
+  Messaging Sender : 939627448385
+  App ID           : 1:939627448385:web:bf051e0b87357e6eb59ec0
+  API Key          : AIzaSyD4b0DYPMFSawWSRfCIrdbk28rys0fEnU8
+
+  COMPTE DE SERVICE FIREBASE (cle privee) :
+  ──────────────────────────────────────────
+  Fichier JSON      : firebase/sites-clients-admin-firebase-adminsdk-fbsvc-3858dcd4ac.json
+  Type              : service_account
+  Project ID        : sites-clients-admin
+  Private Key ID    : 3858dcd4ac446eb17594747b66b81a6c591ef9f3
+  Client Email      : firebase-adminsdk-fbsvc@sites-clients-admin.iam.gserviceaccount.com
+  Client ID         : 106128654091076293239
+  Auth URI          : https://accounts.google.com/o/oauth2/auth
+  Token URI         : https://oauth2.googleapis.com/token
+  Auth Provider     : https://www.googleapis.com/oauth2/v1/certs
+  Client Cert URL   : https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40sites-clients-admin.iam.gserviceaccount.com
+  Universe Domain   : googleapis.com
+  Private Key       : Present dans le fichier JSON (cle RSA complete)
+
+
+=============================================================================
+  COLLECTION FIRESTORE CREEE
+=============================================================================
+
+  Collection : "sites"
+
+  Document 1 : green-innovators
+  ──────────────────────────────
+  id               : green-innovators
+  nom              : Green Innovators SARL
+  url              : https://green-innovators.cm
+  actif            : true
+  description      : Solutions solaires et energie photovoltaique - Douala
+  dateModification : 2026-08-26
+
+  Document 2 : legetup
+  ─────────────────────
+  id               : legetup
+  nom              : LE GETUP - Cours Espagnol
+  url              : https://legetup.cm
+  actif            : true
+  description      : Cours de repetition et Espagnol - Yaounde
+  dateModification : 2026-08-26
+
+  Document 3 : pgc-cleaners
+  ──────────────────────────
+  id               : pgc-cleaners
+  nom              : Professionnal Global Cleaners
+  url              : https://pgc-cleaners.cm
+  actif            : true
+  description      : Nettoyage professionnel et demenagement - Yaounde Bonas
+  dateModification : 2026-08-26
+
+
+=============================================================================
+  ARBORESCENCE DU PROJET
+=============================================================================
+
+  Projet/
+  ├── admin/                              <- PANEL ADMIN (launcher)
+  │   ├── index.html                      <- Page principale (3 boutons SVG inline)
+  │   ├── error.html                      <- Page 404 / site desactive
+  │   ├── css/
+  │   │   └── admin.css                   <- Styles admin + error
+  │   ├── js/
+  │   │   ├── firebase-config.js          <- Config Firebase (cles mises a jour)
+  │   │   └── admin.js                    <- Logique actif/inactif
+  │   └── assets/                         <- Vide (SVG inline)
+  │
+  ├── firebase/                           <- CONFIG FIREBASE
+  │   ├── firebase_setup.py               <- Script d'setup + activation/desactivation
+  │   ├── AVANT-PYTHON.txt                <- Guide manuel (8 phases)
+  │   ├── TODO-FIREBASE.txt               <- Rappel pour creer Firebase
+  │   ├── HOSTING.txt                     <- Guide de mise en ligne
+  │   ├── CONTEXTE ABSOLUE.txt            <- CE FICHIER
+  │   ├── apikey.txt                      <- Config Firebase copiee depuis la console
+  │   └── sites-clients-admin-firebase-adminsdk-fbsvc-3858dcd4ac.json  <- Cle privee
+  │
+  ├── site-1-green-innovators/            <- SITE 1 (Angular 21, SSR)
+  │   ├── src/app/
+  │   │   ├── components/ (4 composants)
+  │   │   ├── pages/ (5 pages : home, boutique, services, financement, contact)
+  │   │   ├── services/ (cart.service, solar-data.service)
+  │   │   └── models/ (product.model)
+  │   ├── src/assets/images/ (15 images)
+  │   ├── public/assets/images/ (15 images)
+  │   ├── angular.json, package.json, tsconfig.json
+  │   └── .env.example
+  │
+  ├── site-2-legetup/                     <- SITE 2 (React 19 + Vite)
+  │   ├── src/
+  │   │   ├── components/ (11 composants)
+  │   │   ├── data/ (coursesData.ts)
+  │   │   ├── hooks/ (useCountdown, useResizeObserver)
+  │   │   ├── utils/ (whatsapp.ts)
+  │   │   ├── assets/images/ (2 images)
+  │   │   ├── App.tsx, main.tsx, types.ts
+  │   ├── index.html, vite.config.ts, package.json
+  │   └── .env.example
+  │
+  ├── site-3-pgc-cleaners/                <- SITE 3 (Angular 21)
+  │   ├── src/app/
+  │   │   ├── app.ts, app.html (30 Ko, tout le template)
+  │   │   ├── services/ (cleaning.service.ts)
+  │   │   └── models/ (service.model.ts)
+  │   ├── angular.json, package.json, tsconfig.json
+  │   └── .env.example
+  │
+  ├── arborescence.py                     <- Script generateur d'arborescence
+  ├── arborescence_Projet.txt             <- Arborescence generee (143 fichiers, 29.43 Mo)
+  └── optimize_green_innovators_images.py <- Script optimisation images Site 1
+
+
+=============================================================================
+  CE QUI FONCTIONNE DEJA
+=============================================================================
+
+  1. COLLECTION FIRESTORE
+     ✓ La collection "sites" est creee dans Firestore
+     ✓ Les 3 documents existent avec actif: true
+     ✓ Les commandes Python fonctionnent :
+       - python firebase_setup.py --status
+       - python firebase_setup.py --site [id] --actif [true/false]
+
+  2. FIREBASE-CONFIG.JS
+     ✓ Le fichier admin/js/firebase-config.js contient les vraies cles
+     ✓ projectId, authDomain, storageBucket, messagingSenderId, appId sont corrects
+     ✓ API Key : AIzaSyD4b0DYPMFSawWSRfCIrdbk28rys0fEnU8
+
+  3. PANEL ADMIN (admin/)
+     ✓ index.html fonctionne avec les SVG inline
+     ✓ error.html est pret pour la page 404
+     ✓ admin.css est termine (design dark)
+     ✓ admin.js lit Firebase et affiche les statuts
+     ✓ Le serveur local fonctionne : python -m http.server 8080
+     ✓ Le panel affiche "Firebase connecte" et les 3 cartes "Actif"
+
+  4. LES 3 SITES
+     ✓ Site 1 (Green Innovators) : Angular 21, e-commerce solaire, 15 images
+     ✓ Site 2 (LE GETUP) : React 19, cours espagnol, reservation
+     ✓ Site 3 (PGC Cleaners) : Angular 21, vitrine nettoyage
+     ✓ Aucun lien entre les sites (isolation totale)
+     ✓ Aucun lien vers admin depuis les sites
+
+  5. SCRIPTS PYTHON
+     ✓ firebase_setup.py : setup + activation/desactivation
+     ✓ arborescence.py : generation d'arborescence
+     ✓ optimize_green_innovators_images.py : optimisation images (non teste)
+
+
+=============================================================================
+  CE QUI RESTE A FAIRE
+=============================================================================
+
+  1. HEBERGEMENT (HOSTING)
+     ✗ Choisir une plateforme (Vercel recommande)
+     ✗ Creer un compte Vercel
+     ✗ Creer un repo GitHub et pousser le code
+     ✗ Deployer les 4 projets (admin + 3 sites)
+     ✗ Configurer les domaines
+     ✗ Mettre a jour les URLs dans Firestore
+
+  2. DOMAINES (optionnel)
+     ✗ Acheter les domaines (.cm ou autre)
+     ✗ Configurer le DNS vers Vercel
+     ✗ Ajouter les domaines personnalises dans Vercel
+
+  3. SECURISATION FIRESTORE
+     ✗ Passer Firestore en mode "produit"
+     ✗ Configurer les regles de securite
+     ✗ Limiter les ecritures
+
+  4. OPTIMISATION IMAGES
+     ✗ Tester optimize_green_innovators_images.py
+     ✗ Optimiser les 15 images du Site 1
+
+
+=============================================================================
+  COMMENT UTILISER LES COMMANDES PYTHON
+=============================================================================
+
+  Setup initial (deja fait) :
+  python firebase_setup.py
+
+  Voir le statut :
+  python firebase_setup.py --status
+
+  Desactiver un site :
+  python firebase_setup.py --site pgc-cleaners --actif false
+
+  Reactiver un site :
+  python firebase_setup.py --site pgc-cleaners --actif true
+
+  Generer l'arborescence :
+  python arborescence.py
+
+  Optimiser les images (Site 1) :
+  python optimize_green_innovators_images.py
+
+
+=============================================================================
+  NOTES IMPORTANTES
+=============================================================================
+
+  - Le panel admin fonctionne en mode degrade si Firebase est indisponible
+  - Les 3 sites sont isoles les uns des autres (pas de liens)
+  - Le panel admin n'est visible que par l'admin (URL secrete)
+  - La cle privee Firebase est dans le dossier firebase/ (NE PAS PARTAGER)
+  - Les URLs actuelles (.cm) sont des placeholders, a changer apres hebergement
+  - Les images du Site 1 font 25 Mo (public) + 14 Mo (src) = 39 Mo au total
+
+
+=============================================================================
+  HISTORIQUE DES MODIFICATIONS
+=============================================================================
+
+  2026-08-26 :
+  - Creation de la structure du projet (admin/, firebase/, 3 sites)
+  - Deploiement des 3 sites existants dans les dossiers propres
+  - Creation de admin/index.html avec SVG inline
+  - Creation de admin/error.html (page 404)
+  - Creation de admin/css/admin.css (design dark)
+  - Creation de admin/js/firebase-config.js (placeholder)
+  - Creation de admin/js/admin.js (logique actif/inactif)
+  - Creation de firebase/AVANT-PYTHON.txt (guide manuel)
+  - Creation de firebase/TODO-FIREBASE.txt (rappel Firebase)
+  - Installation des paquets Python (firebase-admin, Pillow, etc.)
+  - Creation du projet Firebase "sites-clients-admin"
+  - Activation de Firestore dans Firebase
+  - Telechargement de la cle de service JSON
+  - Creation de firebase/firebase_setup.py (setup + activation/desactivation)
+  - Creation de la collection "sites" dans Firestore (3 documents)
+  - Mise a jour de firebase-config.js avec les vraies cles
+  - Test du panel admin sur localhost:8080 (fonctionne)
+  - Creation de firebase/HOSTING.txt (guide de mise en ligne)
+  - Ajout des commandes --status et --actif a firebase_setup.py
+  - Test des commandes Python (fonctionne)
+  - Creation de arborescence.py (generateur d'arborescence)
+  - Generation de arborescence_Projet.txt (47 dossiers, 143 fichiers, 29.43 Mo)
+  - Creation de firebase/CONTEXTE ABSOLUE.txt (ce fichier)
+
+
+=============================================================================

@@ -1,0 +1,210 @@
+================================================================================
+  ARBORESCENCE COMPLETE
+================================================================================
+
+  Dossier source : C:\Users\MAMA NADY\Desktop\Projet
+  Date : 2026-08-26 18:10:25
+
+  Statistiques :
+    - Dossiers : 47
+    - Fichiers : 143
+    - Taille   : 29.43 Mo
+
+================================================================================
+
+  Projet/
+  |-- [DIR]  __pycache__/
+  |   |-- arborescence.cpython-312.pyc  (6.7 Ko)
+  |   --- optimize_green_innovators_images.cpython-312.pyc  (17.0 Ko)
+  |-- [DIR]  admin/
+  |   |-- [DIR]  assets/
+  |   |-- [DIR]  css/
+  |   |   --- admin.css  (10.0 Ko)
+  |   |-- [DIR]  js/
+  |   |   |-- admin.js  (5.5 Ko)
+  |   |   --- firebase-config.js  (2.8 Ko)
+  |   |-- error.html  (1.3 Ko)
+  |   --- index.html  (9.4 Ko)
+  |-- [DIR]  firebase/
+  |   |-- AVANT-PYTHON.txt  (12.5 Ko)
+  |   |-- TODO-FIREBASE.txt  (4.9 Ko)
+  |   |-- apikey.txt  (673 o)
+  |   |-- firebase_setup.py  (7.4 Ko)
+  |   --- sites-clients-admin-firebase-adminsdk-fbsvc-3858dcd4ac.json  (2.3 Ko)
+  |-- [DIR]  site-1-green-innovators/
+  |   |-- [DIR]  assets/
+  |   |   --- [DIR]  .aistudio/
+  |   |       --- .gitignore  (2 o)
+  |   |-- [DIR]  public/
+  |   |   |-- [DIR]  assets/
+  |   |   |   --- [DIR]  images/
+  |   |   |       |-- green_innovators_logo_1787573609521.jpg  (574.1 Ko)
+  |   |   |       |-- green_powerplay_pro_1787537976494.jpg  (1.60 Mo)
+  |   |   |       |-- lantern_tripod_1787573559411.jpg  (1.11 Mo)
+  |   |   |       |-- powerplay_box_1787536335157.jpg  (1.53 Mo)
+  |   |   |       |-- solar_freezer_home_1787537937733.jpg  (1.71 Mo)
+  |   |   |       |-- solar_irrigation_farm_1787573622091.jpg  (2.00 Mo)
+  |   |   |       |-- solar_living_room_1787537950092.jpg  (1.61 Mo)
+  |   |   |       |-- solar_poultry_farm_1787536289253.jpg  (1.92 Mo)
+  |   |   |       |-- solar_pumping_1787536352715.jpg  (2.12 Mo)
+  |   |   |       |-- solar_tv_kit_1787536318623.jpg  (1.52 Mo)
+  |   |   |       |-- sunking_radio_kit_1787573570678.jpg  (1.25 Mo)
+  |   |   |       |-- sunking_system_box_1787537963370.jpg  (1.67 Mo)
+  |   |   |       |-- team_village_handover_1787573583207.jpg  (1.86 Mo)
+  |   |   |       |-- technician_forest_walk_1787573595900.jpg  (2.07 Mo)
+  |   |   |       --- technician_roof_1787536303760.jpg  (1.75 Mo)
+  |   |   --- favicon.ico  (18.7 Ko)
+  |   |-- [DIR]  src/
+  |   |   |-- [DIR]  app/
+  |   |   |   |-- [DIR]  components/
+  |   |   |   |   |-- [DIR]  cart-drawer/
+  |   |   |   |   |   --- cart-drawer.ts  (14.9 Ko)
+  |   |   |   |   |-- [DIR]  header/
+  |   |   |   |   |   --- header.ts  (7.7 Ko)
+  |   |   |   |   |-- [DIR]  product-modal/
+  |   |   |   |   |   --- product-modal.ts  (8.1 Ko)
+  |   |   |   |   --- [DIR]  product-visual/
+  |   |   |   |       --- product-visual.ts  (5.5 Ko)
+  |   |   |   |-- [DIR]  models/
+  |   |   |   |   --- product.model.ts  (1.8 Ko)
+  |   |   |   |-- [DIR]  pages/
+  |   |   |   |   |-- [DIR]  boutique/
+  |   |   |   |   |   --- boutique.ts  (10.7 Ko)
+  |   |   |   |   |-- [DIR]  contact/
+  |   |   |   |   |   --- contact.ts  (9.6 Ko)
+  |   |   |   |   |-- [DIR]  financement/
+  |   |   |   |   |   --- financement.ts  (10.4 Ko)
+  |   |   |   |   |-- [DIR]  home/
+  |   |   |   |   |   --- home.ts  (20.8 Ko)
+  |   |   |   |   --- [DIR]  services/
+  |   |   |   |       --- services.ts  (10.7 Ko)
+  |   |   |   |-- [DIR]  services/
+  |   |   |   |   |-- cart.service.ts  (7.7 Ko)
+  |   |   |   |   --- solar-data.service.ts  (33.4 Ko)
+  |   |   |   |-- app.config.server.ts  (411 o)
+  |   |   |   |-- app.config.ts  (303 o)
+  |   |   |   |-- app.css  (0 o)
+  |   |   |   |-- app.html  (1.2 Ko)
+  |   |   |   |-- app.routes.server.ts  (166 o)
+  |   |   |   |-- app.routes.ts  (701 o)
+  |   |   |   |-- app.spec.ts  (397 o)
+  |   |   |   --- app.ts  (501 o)
+  |   |   |-- [DIR]  assets/
+  |   |   |   --- [DIR]  images/
+  |   |   |       |-- green_innovators_logo_1787573609521.jpg  (41.2 Ko)
+  |   |   |       |-- green_powerplay_pro_1787537976494.jpg  (141.7 Ko)
+  |   |   |       |-- lantern_tripod_1787573559411.jpg  (63.7 Ko)
+  |   |   |       |-- powerplay_box_1787536335157.jpg  (136.2 Ko)
+  |   |   |       |-- solar_freezer_home_1787537937733.jpg  (152.8 Ko)
+  |   |   |       |-- solar_irrigation_farm_1787573622091.jpg  (195.1 Ko)
+  |   |   |       |-- solar_living_room_1787537950092.jpg  (131.9 Ko)
+  |   |   |       |-- solar_poultry_farm_1787536289253.jpg  (187.9 Ko)
+  |   |   |       |-- solar_pumping_1787536352715.jpg  (210.6 Ko)
+  |   |   |       |-- solar_tv_kit_1787536318623.jpg  (128.3 Ko)
+  |   |   |       |-- sunking_radio_kit_1787573570678.jpg  (93.0 Ko)
+  |   |   |       |-- sunking_system_box_1787537963370.jpg  (148.0 Ko)
+  |   |   |       |-- team_village_handover_1787573583207.jpg  (172.6 Ko)
+  |   |   |       |-- technician_forest_walk_1787573595900.jpg  (210.1 Ko)
+  |   |   |       --- technician_roof_1787536303760.jpg  (162.5 Ko)
+  |   |   |-- index.html  (1.5 Ko)
+  |   |   |-- main.server.ts  (291 o)
+  |   |   |-- main.ts  (213 o)
+  |   |   |-- server.ts  (1.6 Ko)
+  |   |   --- styles.css  (1.9 Ko)
+  |   |-- .env.example  (445 o)
+  |   |-- .gitignore  (641 o)
+  |   |-- .postcssrc.json  (54 o)
+  |   |-- README.md  (542 o)
+  |   |-- angular.json  (2.3 Ko)
+  |   |-- bun.lock  (184.6 Ko)
+  |   |-- eslint.config.js  (1002 o)
+  |   |-- metadata.json  (341 o)
+  |   |-- package.json  (1.4 Ko)
+  |   |-- tsconfig.app.json  (431 o)
+  |   |-- tsconfig.json  (957 o)
+  |   --- tsconfig.spec.json  (417 o)
+  |-- [DIR]  site-2-legetup/
+  |   |-- [DIR]  assets/
+  |   |   --- [DIR]  .aistudio/
+  |   |       --- .gitignore  (2 o)
+  |   |-- [DIR]  src/
+  |   |   |-- [DIR]  assets/
+  |   |   |   --- [DIR]  images/
+  |   |   |       |-- getup_official_flyer_1787631482647.jpg  (826.2 Ko)
+  |   |   |       --- official_flyer.jpg  (1.50 Mo)
+  |   |   |-- [DIR]  components/
+  |   |   |   |-- BookingSection.tsx  (24.2 Ko)
+  |   |   |   |-- CountdownSection.tsx  (8.0 Ko)
+  |   |   |   |-- CoursesGrid.tsx  (5.8 Ko)
+  |   |   |   |-- FaqSection.tsx  (4.4 Ko)
+  |   |   |   |-- FloatingWhatsApp.tsx  (2.3 Ko)
+  |   |   |   |-- Footer.tsx  (5.3 Ko)
+  |   |   |   |-- Hero.tsx  (10.4 Ko)
+  |   |   |   |-- Methodology.tsx  (6.7 Ko)
+  |   |   |   |-- Navbar.tsx  (10.4 Ko)
+  |   |   |   |-- OfficialFlyerSection.tsx  (11.0 Ko)
+  |   |   |   --- PricingCard.tsx  (5.6 Ko)
+  |   |   |-- [DIR]  data/
+  |   |   |   --- coursesData.ts  (6.7 Ko)
+  |   |   |-- [DIR]  hooks/
+  |   |   |   |-- useCountdown.ts  (1.2 Ko)
+  |   |   |   --- useResizeObserver.ts  (1.1 Ko)
+  |   |   |-- [DIR]  utils/
+  |   |   |   --- whatsapp.ts  (2.3 Ko)
+  |   |   |-- App.tsx  (2.9 Ko)
+  |   |   |-- index.css  (408 o)
+  |   |   |-- main.tsx  (231 o)
+  |   |   |-- types.ts  (847 o)
+  |   |   --- vite-env.d.ts  (395 o)
+  |   |-- .env.example  (445 o)
+  |   |-- .gitignore  (73 o)
+  |   |-- README.md  (542 o)
+  |   |-- bun.lock  (71.5 Ko)
+  |   |-- index.html  (1.4 Ko)
+  |   |-- metadata.json  (373 o)
+  |   |-- package.json  (918 o)
+  |   |-- tsconfig.json  (508 o)
+  |   --- vite.config.ts  (708 o)
+  |-- [DIR]  site-3-pgc-cleaners/
+  |   |-- [DIR]  assets/
+  |   |   --- [DIR]  .aistudio/
+  |   |       --- .gitignore  (2 o)
+  |   |-- [DIR]  public/
+  |   |   --- favicon.ico  (18.7 Ko)
+  |   |-- [DIR]  src/
+  |   |   |-- [DIR]  app/
+  |   |   |   |-- [DIR]  models/
+  |   |   |   |   --- service.model.ts  (1.8 Ko)
+  |   |   |   |-- [DIR]  services/
+  |   |   |   |   --- cleaning.service.ts  (13.5 Ko)
+  |   |   |   |-- app.config.server.ts  (411 o)
+  |   |   |   |-- app.config.ts  (303 o)
+  |   |   |   |-- app.css  (0 o)
+  |   |   |   |-- app.html  (30.8 Ko)
+  |   |   |   |-- app.routes.server.ts  (166 o)
+  |   |   |   |-- app.routes.ts  (75 o)
+  |   |   |   |-- app.spec.ts  (397 o)
+  |   |   |   --- app.ts  (6.0 Ko)
+  |   |   |-- index.html  (1.4 Ko)
+  |   |   |-- main.server.ts  (291 o)
+  |   |   |-- main.ts  (213 o)
+  |   |   |-- server.ts  (1.6 Ko)
+  |   |   --- styles.css  (9.2 Ko)
+  |   |-- .env.example  (445 o)
+  |   |-- .gitignore  (641 o)
+  |   |-- .postcssrc.json  (54 o)
+  |   |-- README.md  (542 o)
+  |   |-- angular.json  (2.3 Ko)
+  |   |-- eslint.config.js  (1002 o)
+  |   |-- metadata.json  (313 o)
+  |   |-- package.json  (1.4 Ko)
+  |   |-- tsconfig.app.json  (431 o)
+  |   |-- tsconfig.json  (957 o)
+  |   --- tsconfig.spec.json  (417 o)
+  |-- arborescence.py  (4.0 Ko)
+  --- optimize_green_innovators_images.py  (16.1 Ko)
+
+================================================================================
+
+  Fichier genere le 2026-08-26 a 18:10:25
+================================================================================

@@ -1,0 +1,690 @@
+<!-- ==========================================================================
+     PROFESSIONNAL GLOBAL CLEANERS (YAOUNDÉ BONAS)
+     VITRINE ÉDITORIALE & MINIMALISTE SUR GRILLE SUISSE (MÜLLER-BROCKMANN)
+     ==========================================================================
+     Ce code HTML respecte les principes de l'International Typographic Style :
+     - Espaces généreux, hiérarchie typographique nette (Inter + Space Mono)
+     - Indexation claire des 8 prestations de 01 à 08
+     - Zéro surcharge visuelle (pas d'images lourdes, pas d'effets artificiels)
+     - Sélection intuitive des services et envoi direct du message WhatsApp
+     ========================================================================== -->
+
+<div class="d-flex flex-column min-vh-100 bg-white">
+
+  <!-- ========================================================================
+       1. EN-TÊTE ÉDITORIAL & NAVIGATION MINIMALISTE (SECTION STATIQUE DÉFILANTE)
+       ======================================================================== -->
+  <header class="border-bottom bg-white">
+    
+    <!-- Ligne supérieure : Folio géographique et coordonnées directes -->
+    <div class="border-bottom py-2 bg-white">
+      <div class="editorial-container d-flex justify-content-between align-items-center flex-wrap gap-2 small">
+        
+        <!-- Emplacement géographique au format typographique -->
+        <div class="d-flex align-items-center gap-3 font-mono" style="font-size: 0.8rem;">
+          <span class="text-dark fw-bold">YAOUNDÉ / BONAS</span>
+          <span class="text-muted d-none d-sm-inline">·</span>
+          <span class="text-muted d-none d-sm-inline">Cameroun</span>
+          <span class="text-muted d-none d-md-inline">·</span>
+          <span class="text-muted d-none d-md-inline">{{ cleaningService.openingHours }}</span>
+        </div>
+
+        <!-- Coordonnées et bascule de la grille de repère -->
+        <div class="d-flex align-items-center gap-3 font-mono" style="font-size: 0.8rem;">
+          <!-- Bouton pour afficher/masquer la grille suisse modulaire -->
+          <button 
+            (click)="toggleGrid()" 
+            type="button" 
+            class="btn btn-sm btn-outline-secondary py-0 px-2 font-mono" 
+            style="font-size: 0.75rem;"
+            [title]="isGridActive() ? 'Masquer la grille modulaire' : 'Afficher la grille modulaire de repère (Touche G)'"
+          >
+            Grille (G) : {{ isGridActive() ? 'ON' : 'OFF' }}
+          </button>
+
+          <!-- Numéro de téléphone direct -->
+          <a [href]="cleaningService.getPhoneCallUrl()" class="text-dark text-decoration-none fw-bold">
+            <i class="bi bi-telephone-fill text-success me-1"></i> +237 654490978
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Barre de marque et menu de navigation principal -->
+    <nav class="py-3 bg-white">
+      <div class="editorial-container d-flex justify-content-between align-items-center flex-wrap gap-3">
+        
+        <!-- Nom officiel de la société en typographie forte -->
+        <a href="#" class="text-decoration-none text-dark d-flex align-items-center gap-2">
+          <span class="d-inline-block bg-dark text-white font-mono px-2 py-1 small fw-bold">PGC</span>
+          <div>
+            <span class="d-block fw-bolder text-dark font-sans tracking-tight" style="font-size: 1.15rem; letter-spacing: -0.03em;">
+              PROFESSIONNAL GLOBAL CLEANERS
+            </span>
+            <span class="d-block font-mono text-muted" style="font-size: 0.75rem; letter-spacing: 0.05em;">
+              SIÈGE SOCIAL : QUARTIER BONAS, YAOUNDÉ
+            </span>
+          </div>
+        </a>
+
+        <!-- Liens vers les sections clés -->
+        <div class="d-none d-md-flex align-items-center gap-4 font-sans" style="font-size: 0.9rem;">
+          <button (click)="scrollToSection('presentation')" class="btn btn-link text-secondary text-decoration-none p-0 fw-medium">
+            Présentation
+          </button>
+          <button (click)="scrollToSection('services')" class="btn btn-link text-secondary text-decoration-none p-0 fw-medium">
+            Les 8 Prestations
+          </button>
+          <button (click)="scrollToSection('whatsapp-section')" class="btn btn-link text-secondary text-decoration-none p-0 fw-medium d-flex align-items-center gap-1">
+            <span>Demande WhatsApp</span>
+            @if (selectedCount() > 0) {
+              <span class="badge bg-success font-mono rounded-pill">{{ selectedCount() }}</span>
+            }
+          </button>
+          <button (click)="scrollToSection('expertise')" class="btn btn-link text-secondary text-decoration-none p-0 fw-medium">
+            Engagements
+          </button>
+          <button (click)="scrollToSection('implantation')" class="btn btn-link text-secondary text-decoration-none p-0 fw-medium">
+            Implantation
+          </button>
+        </div>
+
+        <!-- Bouton d'action directe WhatsApp -->
+        <a
+          [href]="cleaningService.getWhatsAppDirectUrl()"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-editorial-whatsapp btn-sm py-2 px-3"
+          title="Ouvrir WhatsApp pour contacter PGC à Yaoundé"
+        >
+          <i class="bi bi-whatsapp"></i>
+          <span>WhatsApp Direct</span>
+        </a>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========================================================================
+       2. CONTENU PRINCIPAL DE LA VITRINE
+       ======================================================================== -->
+  <main class="flex-grow-1">
+
+    <!-- ----------------------------------------------------------------------
+         SECTION A : PRÉSENTATION ÉDITORIALE & MANIFESTE
+         ---------------------------------------------------------------------- -->
+    <section id="presentation" class="section-spacious bg-white border-bottom">
+      <div class="editorial-container">
+        
+        <div class="row g-5 align-items-center">
+          
+          <!-- Colonne Texte Principal -->
+          <div class="col-lg-8">
+            
+            <!-- Kicker d'en-tête technique -->
+            <div class="font-mono text-muted mb-3" style="font-size: 0.8rem; letter-spacing: 0.1em;">
+              [ 00 / MANIFESTE DE PROPRETÉ ] — YAOUNDÉ (BONAS)
+            </div>
+
+            <!-- Grand Titre Typographique -->
+            <h1 class="mb-4 text-dark font-sans fw-bolder">
+              L'excellence du nettoyage professionnel, de l'assainissement et du déménagement.
+            </h1>
+
+            <!-- Texte de présentation aéré et lisible -->
+            <p class="text-secondary lead mb-5" style="max-width: 48rem; line-height: 1.7;">
+              Basée au quartier Bonas à Yaoundé, <strong>PROFESSIONNAL GLOBAL CLEANERS</strong> intervient auprès des particuliers, des entreprises et des chantiers avec une rigueur absolue, des équipements industriels de pointe et des méthodes éprouvées.
+            </p>
+
+            <!-- Boutons d'action -->
+            <div class="d-flex flex-wrap gap-3">
+              <button (click)="scrollToSection('services')" class="btn-editorial-dark">
+                <i class="bi bi-arrow-down"></i>
+                <span>Consulter les 8 Services</span>
+              </button>
+              
+              <a [href]="cleaningService.getPhoneCallUrl()" class="btn-editorial-outline font-mono">
+                <i class="bi bi-telephone text-success"></i>
+                <span>+237 654490978</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Colonne Données Clés & Repères (Typographie structurée) -->
+          <div class="col-lg-4">
+            <div class="border p-4 bg-white">
+              
+              <div class="font-mono text-muted small mb-3 border-bottom pb-2">
+                FICHE SIGNALÉTIQUE · PGC YAOUNDÉ
+              </div>
+
+              <div class="d-flex flex-column gap-3">
+                <div>
+                  <div class="font-mono small text-muted">SIÈGE SOCIAL</div>
+                  <div class="fw-bold text-dark">Yaoundé, Quartier Bonas</div>
+                </div>
+
+                <div class="border-top pt-2">
+                  <div class="font-mono small text-muted">RAYON D'ACTION</div>
+                  <div class="fw-bold text-dark">Tous les arrondissements de Yaoundé</div>
+                </div>
+
+                <div class="border-top pt-2">
+                  <div class="font-mono small text-muted">DOMAINES D'EXPERTISE</div>
+                  <div class="small text-secondary">
+                    Fins de chantier, Salons & Cuir, Tapis, Matelas, Vitrerie, Véhicules, Traitement 3D & Déménagement.
+                  </div>
+                </div>
+
+                <div class="border-top pt-2">
+                  <div class="font-mono small text-muted">CANAL DE CONTACT DIRECT</div>
+                  <div class="fw-bold text-success font-mono">+237 654490978</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         SECTION B : LES 8 SERVICES SPÉCIALISÉS (GRILLE MODULAIRE 01 À 08)
+         ---------------------------------------------------------------------- -->
+    <section id="services" class="section-spacious bg-white border-bottom">
+      <div class="editorial-container">
+        
+        <!-- En-tête de section avec indexation mono -->
+        <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5 border-bottom pb-4">
+          <div>
+            <div class="font-mono text-muted mb-2" style="font-size: 0.8rem; letter-spacing: 0.1em;">
+              [ 01 — 08 / CATALOGUE DES PRESTATIONS ]
+            </div>
+            <h2 class="mb-0 text-dark">Nos 8 Services Spécialisés</h2>
+          </div>
+          <p class="text-secondary mb-0 small" style="max-width: 26rem;">
+            Cliquez sur un service pour l'inclure dans votre sélection. Votre message WhatsApp sera généré automatiquement avec le détail exact de vos besoins.
+          </p>
+        </div>
+
+        <!-- Barre de filtres et d'actions de sélection rapide -->
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-5 p-3 border bg-white">
+          
+          <!-- Filtres par domaine d'intervention -->
+          <div class="d-flex flex-wrap gap-2">
+            <button 
+              (click)="setCategoryFilter('tous')" 
+              [class]="activeCategoryFilter() === 'tous' ? 'btn btn-sm btn-dark font-mono' : 'btn btn-sm btn-outline-secondary font-mono'"
+            >
+              Tous (08)
+            </button>
+            <button 
+              (click)="setCategoryFilter('nettoyage')" 
+              [class]="activeCategoryFilter() === 'nettoyage' ? 'btn btn-sm btn-dark font-mono' : 'btn btn-sm btn-outline-secondary font-mono'"
+            >
+              Nettoyage & Pressing (06)
+            </button>
+            <button 
+              (click)="setCategoryFilter('traitement')" 
+              [class]="activeCategoryFilter() === 'traitement' ? 'btn btn-sm btn-dark font-mono' : 'btn btn-sm btn-outline-secondary font-mono'"
+            >
+              Traitement 3D (01)
+            </button>
+            <button 
+              (click)="setCategoryFilter('demenagement')" 
+              [class]="activeCategoryFilter() === 'demenagement' ? 'btn btn-sm btn-dark font-mono' : 'btn btn-sm btn-outline-secondary font-mono'"
+            >
+              Déménagement (01)
+            </button>
+          </div>
+
+          <!-- Compteur et boutons de commande de sélection -->
+          <div class="d-flex align-items-center gap-2 font-mono small">
+            <span class="text-dark fw-bold me-2">
+              {{ selectedCount() }} / {{ cleaningService.services().length }} sélectionné(s)
+            </span>
+            <button (click)="selectAllServices()" class="btn btn-sm btn-outline-dark font-mono py-1 px-2">
+              Tout cocher
+            </button>
+            @if (selectedCount() > 0) {
+              <button (click)="clearSelection()" class="btn btn-sm btn-outline-danger font-mono py-1 px-2">
+                Effacer
+              </button>
+            }
+          </div>
+
+        </div>
+
+        <!-- GRILLE DES 8 SERVICES (MODULAIRE & AÉRÉE) -->
+        <div class="row g-4">
+          @for (srv of filteredServices(); track srv.id) {
+            <div class="col-lg-6">
+              
+              <!-- Module de service : Clic pour basculer l'état sélectionné -->
+              <div 
+                class="service-module"
+                role="button"
+                tabindex="0"
+                [class.is-selected]="isServiceSelected(srv.id)"
+                (click)="toggleServiceSelection(srv.id)"
+                (keyup.enter)="toggleServiceSelection(srv.id)"
+              >
+                
+                <div>
+                  <!-- En-tête du service : Grand Numéro 01-08, Catégorie et Statut -->
+                  <div class="d-flex justify-content-between align-items-start mb-3 border-bottom pb-2">
+                    <div class="d-flex align-items-baseline gap-3">
+                      <span class="service-numeral">{{ srv.numeral }}</span>
+                      <span class="service-category-tag">{{ srv.categoryLabel }}</span>
+                    </div>
+
+                    <!-- Indicateur de sélection -->
+                    <button 
+                      type="button"
+                      class="btn-toggle-select"
+                      (click)="$event.stopPropagation(); toggleServiceSelection(srv.id)"
+                    >
+                      @if (isServiceSelected(srv.id)) {
+                        <span>✓ SÉLECTIONNÉ</span>
+                      } @else {
+                        <span>+ SÉLECTIONNER</span>
+                      }
+                    </button>
+                  </div>
+
+                  <!-- Titre principal du service -->
+                  <h3 class="mb-2 text-dark font-sans fw-bold">{{ srv.title }}</h3>
+
+                  <!-- Description détaillée -->
+                  <p class="text-secondary small mb-4" style="line-height: 1.6;">
+                    {{ srv.fullDescription }}
+                  </p>
+
+                  <!-- Détail des prestations incluses (Liste aérée) -->
+                  <div class="mb-4">
+                    <div class="font-mono text-muted mb-2" style="font-size: 0.75rem; letter-spacing: 0.05em;">
+                      PRESTATIONS INCLUSES :
+                    </div>
+                    <ul class="list-unstyled mb-0 small text-secondary">
+                      @for (feat of srv.features; track feat) {
+                        <li class="d-flex align-items-start gap-2 mb-1">
+                          <span class="text-success fw-bold font-mono">―</span>
+                          <span>{{ feat }}</span>
+                        </li>
+                      }
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Pied du module : Matériel pro employé -->
+                <div class="border-top pt-3 mt-2 font-mono small text-muted" style="font-size: 0.75rem;">
+                  <span class="text-dark fw-bold">MATÉRIEL :</span> {{ srv.equipmentUsed.join(', ') }}
+                </div>
+
+              </div>
+
+            </div>
+          }
+        </div>
+
+        <!-- Appel à l'action intermédiaire vers le formulaire WhatsApp -->
+        <div class="mt-5 pt-4 border-top text-center">
+          <div class="font-mono text-muted small mb-2">
+            @if (selectedCount() === 0) {
+              [ AUCUN SERVICE SÉLECTIONNÉ POUR LE MOMENT ]
+            } @else {
+              [ {{ selectedCount() }} SERVICE(S) SÉLECTIONNÉ(S) DANS VOTRE DOSSIER ]
+            }
+          </div>
+          <h3 class="mb-3 text-dark">Prêt à transmettre votre demande sur WhatsApp ?</h3>
+          <button (click)="scrollToSection('whatsapp-section')" class="btn-editorial-dark">
+            <i class="bi bi-chat-text-fill text-success"></i>
+            <span>Compléter et envoyer mon message WhatsApp</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         SECTION C : GÉNÉRATEUR DE MESSAGE WHATSAPP PRÉ-FORMATÉ
+         ---------------------------------------------------------------------- -->
+    <section id="whatsapp-section" class="section-spacious bg-white border-bottom">
+      <div class="editorial-container">
+        
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            
+            <div class="border p-4 p-md-5 bg-white shadow-xs">
+              
+              <!-- En-tête du formulaire WhatsApp -->
+              <div class="border-bottom pb-4 mb-4">
+                <div class="font-mono text-muted mb-1" style="font-size: 0.8rem; letter-spacing: 0.1em;">
+                  [ CANAL DIRECT WHATSAPP ] · +237 654490978
+                </div>
+                <h2 class="mb-2 text-dark font-sans">Envoyer ma demande à Professionnal Global Cleaners</h2>
+                <p class="text-secondary small mb-0">
+                  Renseignez votre nom et votre quartier à Yaoundé. En cliquant sur le bouton, l'application WhatsApp s'ouvrira avec votre message pré-rédigé.
+                </p>
+              </div>
+
+              <!-- Formulaire réactif minimaliste -->
+              <form [formGroup]="contactForm">
+                
+                <div class="row g-4 mb-4">
+                  
+                  <!-- Champ Nom / Entreprise -->
+                  <div class="col-md-6">
+                    <label for="clientNameInput" class="form-label font-mono small text-dark fw-bold">
+                      1. VOTRE NOM OU ENTREPRISE *
+                    </label>
+                    <input 
+                      id="clientNameInput"
+                      type="text" 
+                      class="form-control rounded-0 border-secondary-subtle py-2" 
+                      formControlName="clientName" 
+                      placeholder="Ex : M. Paul Atangana"
+                    />
+                  </div>
+
+                  <!-- Champ Quartier à Yaoundé -->
+                  <div class="col-md-6">
+                    <label for="quarterSelect" class="form-label font-mono small text-dark fw-bold">
+                      2. VOTRE QUARTIER À YAOUNDÉ *
+                    </label>
+                    <select id="quarterSelect" class="form-select rounded-0 border-secondary-subtle py-2 font-mono small" formControlName="quarter">
+                      @for (q of cleaningService.yaoundeQuarters; track q.name) {
+                        <option [value]="q.name">{{ q.name }} ({{ q.zone }})</option>
+                      }
+                    </select>
+                  </div>
+
+                  <!-- Champ Précisions / Date -->
+                  <div class="col-12">
+                    <label for="notesInput" class="form-label font-mono small text-dark fw-bold">
+                      3. PRÉCISIONS, VOLUME OU DATE SOUHAITÉE (FACULTATIF)
+                    </label>
+                    <textarea 
+                      id="notesInput"
+                      class="form-control rounded-0 border-secondary-subtle py-2" 
+                      formControlName="notes" 
+                      rows="2" 
+                      placeholder="Ex : Canapé 5 places velours beige + 2 matelas King Size..."
+                    ></textarea>
+                  </div>
+
+                </div>
+
+              </form>
+
+              <!-- Récapitulatif typographique des services sélectionnés -->
+              <div class="border p-3 mb-4 bg-light">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="font-mono small text-dark fw-bold">
+                    SERVICES SÉLECTIONNÉS ({{ selectedCount() }}) :
+                  </span>
+                  <button (click)="scrollToSection('services')" class="btn btn-link btn-sm text-dark font-mono text-decoration-none p-0">
+                    [ Modifier ]
+                  </button>
+                </div>
+
+                @if (selectedServicesList().length > 0) {
+                  <div class="d-flex flex-wrap gap-2">
+                    @for (srv of selectedServicesList(); track srv.id) {
+                      <span class="border bg-white px-2 py-1 font-mono small text-dark d-inline-flex align-items-center gap-2">
+                        <span>{{ srv.numeral }}. {{ srv.title }}</span>
+                        <button 
+                          type="button" 
+                          (click)="toggleServiceSelection(srv.id)" 
+                          class="btn-close" 
+                          style="font-size: 0.65rem;"
+                          title="Retirer ce service"
+                        ></button>
+                      </span>
+                    }
+                  </div>
+                } @else {
+                  <div class="font-mono small text-muted">
+                    Aucun service particulier coché. Une demande de renseignements globale sera transmise.
+                  </div>
+                }
+              </div>
+
+              <!-- Grand bouton d'action WhatsApp -->
+              <div class="d-flex flex-column flex-sm-row gap-3">
+                <a 
+                  [href]="getWhatsAppFinalUrl()" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="btn-editorial-whatsapp flex-grow-1 py-3 text-center"
+                  id="btn-envoyer-whatsapp"
+                >
+                  <i class="bi bi-whatsapp fs-5"></i>
+                  <span>Ouvrir dans WhatsApp (+237 654490978)</span>
+                </a>
+
+                <a 
+                  [href]="cleaningService.getPhoneCallUrl()" 
+                  class="btn-editorial-outline py-3 text-center font-mono"
+                  id="btn-appel-direct"
+                >
+                  <i class="bi bi-telephone-fill text-success"></i>
+                  <span>Appeler Directement</span>
+                </a>
+              </div>
+
+              <div class="mt-3 font-mono text-muted text-center" style="font-size: 0.75rem;">
+                Siège : Yaoundé, Quartier Bonas · Réponse rapide par nos chefs d'équipe.
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         SECTION D : ENGAGEMENTS TECHNIQUES & PROTOCOLE QUALITÉ
+         ---------------------------------------------------------------------- -->
+    <section id="expertise" class="section-spacious bg-white border-bottom">
+      <div class="editorial-container">
+        
+        <div class="font-mono text-muted mb-2" style="font-size: 0.8rem; letter-spacing: 0.1em;">
+          [ PROTOCOLE & RIGUEUR PROFESSIONNELLE ]
+        </div>
+        <h2 class="mb-5 text-dark font-sans">Les 4 Piliers de Professionnal Global Cleaners</h2>
+
+        <div class="row g-4">
+          
+          <!-- Pilier 1 -->
+          <div class="col-md-6 col-lg-3">
+            <div class="border p-4 h-100 bg-white">
+              <div class="font-mono text-success fw-bold fs-4 mb-2">01</div>
+              <h3 class="h6 font-sans fw-bold text-dark mb-2">Matériel Industriel</h3>
+              <p class="text-secondary small mb-0" style="line-height: 1.6;">
+                Injecteurs-extracteurs thermiques, monobrosses à variateur et générateurs de vapeur haute pression.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pilier 2 -->
+          <div class="col-md-6 col-lg-3">
+            <div class="border p-4 h-100 bg-white">
+              <div class="font-mono text-success fw-bold fs-4 mb-2">02</div>
+              <h3 class="h6 font-sans fw-bold text-dark mb-2">Équipes Qualifiées</h3>
+              <p class="text-secondary small mb-0" style="line-height: 1.6;">
+                Techniciens formés aux spécificités du cuir, des fibres délicates et aux normes phytosanitaires 3D.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pilier 3 -->
+          <div class="col-md-6 col-lg-3">
+            <div class="border p-4 h-100 bg-white">
+              <div class="font-mono text-success fw-bold fs-4 mb-2">03</div>
+              <h3 class="h6 font-sans fw-bold text-dark mb-2">Produits Écologiques</h3>
+              <p class="text-secondary small mb-0" style="line-height: 1.6;">
+                Détergents neutres hypoallergéniques sans solvants agressifs, respectueux des enfants et des animaux.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pilier 4 -->
+          <div class="col-md-6 col-lg-3">
+            <div class="border p-4 h-100 bg-white">
+              <div class="font-mono text-success fw-bold fs-4 mb-2">04</div>
+              <h3 class="h6 font-sans fw-bold text-dark mb-2">Ponctualité & Rigueur</h3>
+              <p class="text-secondary small mb-0" style="line-height: 1.6;">
+                Respect strict des horaires, contrôle contradictoire de fin de prestation et discrétion garantie.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         SECTION E : IMPLANTATION GÉOGRAPHIQUE & QUARTIERS COUVERTS
+         ---------------------------------------------------------------------- -->
+    <section id="implantation" class="section-spacious bg-white border-bottom">
+      <div class="editorial-container">
+        
+        <div class="row g-5 align-items-center">
+          
+          <div class="col-lg-5">
+            <div class="font-mono text-muted mb-2" style="font-size: 0.8rem; letter-spacing: 0.1em;">
+              [ RAYON DE DÉPLOIEMENT ]
+            </div>
+            <h2 class="mb-4 text-dark font-sans">Présence à Bonas & Déploiement dans tout Yaoundé</h2>
+            <p class="text-secondary mb-4" style="line-height: 1.7;">
+              Notre base technique est située au <strong>Quartier Bonas</strong>. Nos véhicules d'intervention et équipes mobiles rayonnent au quotidien sur l'ensemble de la capitale.
+            </p>
+
+            <div class="border p-3 mb-3 bg-white font-mono small">
+              <div class="text-muted">CONTACT RAPIDE :</div>
+              <div class="fw-bold text-dark fs-5 mt-1">+237 654490978</div>
+              <div class="text-muted mt-1">Horaires : {{ cleaningService.openingHours }}</div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="border p-4 bg-white">
+              <div class="font-mono small text-muted mb-3 border-bottom pb-2">
+                QUARTIERS DE YAOUNDÉ DESSERVIS AU DÉPART DE BONAS :
+              </div>
+
+              <div class="row g-2">
+                @for (quarter of cleaningService.yaoundeQuarters; track quarter.name) {
+                  <div class="col-sm-6 col-md-4">
+                    <div class="p-2 border font-mono small text-truncate" [title]="quarter.name + ' - ' + quarter.zone">
+                      <span class="text-success fw-bold">·</span> {{ quarter.name }}
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       3. PIED DE PAGE ÉDITORIAL (MINIMALISTE & STRUCTURÉ)
+       ======================================================================== -->
+  <footer class="py-5 bg-white border-top">
+    <div class="editorial-container">
+      
+      <div class="row g-4 mb-5">
+        
+        <div class="col-lg-4">
+          <div class="font-mono text-dark fw-bold mb-2">PROFESSIONNAL GLOBAL CLEANERS</div>
+          <p class="text-secondary small mb-3" style="max-width: 20rem; line-height: 1.6;">
+            Société de propreté, remise en état de chantiers, assainissement 3D et logistique de déménagement à Yaoundé (Bonas).
+          </p>
+          <div class="font-mono small text-dark fw-bold">
+            <i class="bi bi-whatsapp text-success me-1"></i> +237 654490978
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="font-mono text-muted small mb-2 text-uppercase">Prestations 01 à 08</div>
+          <ul class="list-unstyled font-mono small text-secondary mb-0 d-flex flex-column gap-1">
+            @for (srv of cleaningService.services(); track srv.id) {
+              <li>{{ srv.numeral }}. {{ srv.title }}</li>
+            }
+          </ul>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="font-mono text-muted small mb-2 text-uppercase">Localisation & Horaires</div>
+          <div class="font-mono small text-secondary mb-2">
+            Siège : Yaoundé, Quartier Bonas (Cameroun)<br>
+            {{ cleaningService.openingHours }}
+          </div>
+          <a [href]="cleaningService.getWhatsAppDirectUrl()" target="_blank" class="btn-editorial-whatsapp btn-sm py-2 px-3">
+            <i class="bi bi-whatsapp"></i>
+            <span>Contacter sur WhatsApp</span>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="border-top pt-4 d-flex justify-content-between align-items-center flex-wrap gap-2 font-mono text-muted" style="font-size: 0.75rem;">
+        <div>
+          &copy; 2026 PROFESSIONNAL GLOBAL CLEANERS · YAOUNDÉ (BONAS)
+        </div>
+        <div>
+          DESIGN ÉPURÉ · INTERNATIONAL TYPOGRAPHIC STYLE
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       4. BOUTON FLOTTANT WHATSAPP
+       ======================================================================== -->
+  <a 
+    [href]="cleaningService.getWhatsAppDirectUrl()" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="floating-whatsapp-btn"
+    title="Écrire à PROFESSIONNAL GLOBAL CLEANERS sur WhatsApp"
+  >
+    <i class="bi bi-whatsapp fs-5"></i>
+    <span class="d-none d-sm-inline">WhatsApp (+237 654490978)</span>
+  </a>
+
+  <!-- ========================================================================
+       5. GRILLE MODULAIRE MÜLLER-BROCKMANN (OVERLAY VISIBLE AVEC TOUCHE 'G')
+       ======================================================================== -->
+  <div class="grid-overlay-container" aria-hidden="true">
+    <div class="grid-overlay-columns">
+      <div class="grid-overlay-col"><span>01</span></div>
+      <div class="grid-overlay-col"><span>02</span></div>
+      <div class="grid-overlay-col"><span>03</span></div>
+      <div class="grid-overlay-col"><span>04</span></div>
+      <div class="grid-overlay-col"><span>05</span></div>
+      <div class="grid-overlay-col"><span>06</span></div>
+      <div class="grid-overlay-col"><span>07</span></div>
+      <div class="grid-overlay-col"><span>08</span></div>
+      <div class="grid-overlay-col"><span>09</span></div>
+      <div class="grid-overlay-col"><span>10</span></div>
+      <div class="grid-overlay-col"><span>11</span></div>
+      <div class="grid-overlay-col"><span>12</span></div>
+    </div>
+  </div>
+
+</div>
