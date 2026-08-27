@@ -25,19 +25,19 @@ const SITES = {
     cardId:     "card-green-innovators",
     statusId:   "status-green-innovators",
     btnId:      "btn-green-innovators",
-    url:        "https://green-innovators.cm",
+    url:        "https://sites-clients-jt9w.vercel.app",
   },
   "legetup": {
     cardId:     "card-legetup",
     statusId:   "status-legetup",
     btnId:      "btn-legetup",
-    url:        "https://legetup.cm",
+    url:        "https://sites-clients-6pfh.vercel.app",
   },
   "pgc-cleaners": {
     cardId:     "card-pgc-cleaners",
     statusId:   "status-pgc-cleaners",
     btnId:      "btn-pgc-cleaners",
-    url:        "https://pgc-cleaners.cm",
+    url:        "https://sites-clients-bbl5.vercel.app",
   },
 };
 

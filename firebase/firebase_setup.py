@@ -47,7 +47,7 @@ SITES_DATA = [
         "id": "green-innovators",
         "data": {
             "nom": "Green Innovators SARL",
-            "url": "https://green-innovators.cm",
+            "url": "https://sites-clients-jt9w.vercel.app",
             "actif": True,
             "description": "Solutions solaires et energie photovoltaique - Douala",
             "dateModification": datetime.now().strftime("%Y-%m-%d"),
@@ -57,7 +57,7 @@ SITES_DATA = [
         "id": "legetup",
         "data": {
             "nom": "LE GETUP - Cours Espagnol",
-            "url": "https://legetup.cm",
+            "url": "https://sites-clients-6pfh.vercel.app",
             "actif": True,
             "description": "Cours de repetition et Espagnol - Yaounde",
             "dateModification": datetime.now().strftime("%Y-%m-%d"),
@@ -67,7 +67,7 @@ SITES_DATA = [
         "id": "pgc-cleaners",
         "data": {
             "nom": "Professionnal Global Cleaners",
-            "url": "https://pgc-cleaners.cm",
+            "url": "https://sites-clients-bbl5.vercel.app",
             "actif": True,
             "description": "Nettoyage professionnel et demenagement - Yaounde Bonas",
             "dateModification": datetime.now().strftime("%Y-%m-%d"),
