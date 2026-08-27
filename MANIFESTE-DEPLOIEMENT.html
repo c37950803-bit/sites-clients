@@ -302,7 +302,7 @@
         <div class="band">
           <div style="grid-column: 1 / -1;">
             <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-            <div class="progress-label" id="progress-text">6 / 22 étapes — 27%</div>
+            <div class="progress-label" id="progress-text">15 / 22 étapes — 68%</div>
           </div>
         </div>
 
@@ -514,29 +514,16 @@ git push -u origin master</div>
         <!-- 4.1 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-4-1">
-              <div class="step-check"><input type="checkbox" id="check-4-1" onchange="updateProgress()"><label for="check-4-1"></label></div>
+            <div class="step done" id="step-4-1">
+              <div class="step-check"><input type="checkbox" id="check-4-1" checked onchange="updateProgress()"><label for="check-4-1"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">4.1</span>
                   <span class="step-title">Aller sur vercel.com et Sign Up</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Ouvre <code>https://vercel.com</code> et crée un compte.</div>
-                <div class="instructions">
-                  <strong>Étapes détaillées :</strong>
-                  <ol>
-                    <li>Ouvre <code>https://vercel.com</code></li>
-                    <li>Clique sur <strong>"Sign Up"</strong> (en haut à droite)</li>
-                    <li>Choisis <strong>"Continue with GitHub"</strong></li>
-                    <li>Connecte-toi avec ton compte GitHub (<code>c37950803-bit</code>)</li>
-                    <li>Autorise l'accès Vercel à tes repositories</li>
-                    <li>Choisis le plan <strong>"Hobby"</strong> (gratuit, illimité)</li>
-                    <li>Remplis le questionnaire rapide (perso, France, etc.)</li>
-                  </ol>
-                  <div class="tip">💡 Une fois connecté, tu devrais voir le dashboard Vercel avec la liste de tes projets.</div>
-                </div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-desc">Compte Vercel créé et connecté à GitHub.</div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -554,30 +541,16 @@ git push -u origin master</div>
         <!-- 5.1 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-5-1">
-              <div class="step-check"><input type="checkbox" id="check-5-1" onchange="updateProgress()"><label for="check-5-1"></label></div>
+            <div class="step done" id="step-5-1">
+              <div class="step-check"><input type="checkbox" id="check-5-1" checked onchange="updateProgress()"><label for="check-5-1"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">5.1</span>
                   <span class="step-title">Déployer l'admin panel</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Déploiement du panneau d'administration Firebase.</div>
-                <div class="instructions">
-                  <strong>Étapes détaillées :</strong>
-                  <ol>
-                    <li>Dans Vercel Dashboard, clique <strong>"Add New..."</strong> → <strong>"Project"</strong></li>
-                    <li>Connecte le dépôt GitHub <code>c37950803-bit/sites-clients</code></li>
-                    <li>Vercel détecte le framework : change à <strong>"Other"</strong></li>
-                    <li><strong>Root Directory :</strong> clique "Change" → sélectionne <code>admin</code></li>
-                    <li><strong>Build Command :</strong> laisse vide (pas de build nécessaire)</li>
-                    <li><strong>Output Directory :</strong> <code>.</code></li>
-                    <li>Clique <strong>"Deploy"</strong></li>
-                    <li>Copie l'URL générée (ex: <code>admin-xxxxx.vercel.app</code>)</li>
-                  </ol>
-                  <div class="tip">💡 Le dossier <code>admin/</code> contient du HTML/CSS/JS brut, pas de build nécessaire.</div>
-                </div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-desc">Admin panel déployé → <code>sites-clients.vercel.app</code></div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -586,30 +559,16 @@ git push -u origin master</div>
         <!-- 5.2 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-5-2">
-              <div class="step-check"><input type="checkbox" id="check-5-2" onchange="updateProgress()"><label for="check-5-2"></label></div>
+            <div class="step done" id="step-5-2">
+              <div class="step-check"><input type="checkbox" id="check-5-2" checked onchange="updateProgress()"><label for="check-5-2"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">5.2</span>
                   <span class="step-title">Déployer Site 1 (Green Innovators)</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Déploiement du site Angular Green Innovators.</div>
-                <div class="instructions">
-                  <strong>Étapes détaillées :</strong>
-                  <ol>
-                    <li>Dans Vercel Dashboard, <strong>"Add New..."</strong> → <strong>"Project"</strong></li>
-                    <li>Sélectionne le même dépôt <code>sites-clients</code></li>
-                    <li><strong>Framework :</strong> sélectionne <strong>"Angular"</strong></li>
-                    <li><strong>Root Directory :</strong> <code>site-1-green-innovators</code></li>
-                    <li><strong>Build Command :</strong> <code>npm run build</code> (pré-rempli)</li>
-                    <li><strong>Output Directory :</strong> <code>dist/app/browser</code></li>
-                    <li>Clique <strong>"Deploy"</strong> et attends le build (~1 min)</li>
-                    <li>Copie l'URL générée (ex: <code>site-1-xxxxx.vercel.app</code>)</li>
-                  </ol>
-                  <div class="tip">💡 Angular SSR est inclus mais Vercel gère automatiquement le routing avec le fichier <code>.vercel/output/config.json</code>.</div>
-                </div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-desc">Site déployé → <code>sites-clients-jt9w.vercel.app</code></div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -618,30 +577,16 @@ git push -u origin master</div>
         <!-- 5.3 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-5-3">
-              <div class="step-check"><input type="checkbox" id="check-5-3" onchange="updateProgress()"><label for="check-5-3"></label></div>
+            <div class="step done" id="step-5-3">
+              <div class="step-check"><input type="checkbox" id="check-5-3" checked onchange="updateProgress()"><label for="check-5-3"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">5.3</span>
                   <span class="step-title">Déployer Site 2 (LE GETUP)</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Déploiement du site React/Vite LE GETUP.</div>
-                <div class="instructions">
-                  <strong>Étapes détaillées :</strong>
-                  <ol>
-                    <li>Dans Vercel Dashboard, <strong>"Add New..."</strong> → <strong>"Project"</strong></li>
-                    <li>Sélectionne le dépôt <code>sites-clients</code></li>
-                    <li><strong>Framework :</strong> sélectionne <strong>"Vite"</strong></li>
-                    <li><strong>Root Directory :</strong> <code>site-2-legetup</code></li>
-                    <li><strong>Build Command :</strong> <code>npm run build</code> (pré-rempli)</li>
-                    <li><strong>Output Directory :</strong> <code>dist</code></li>
-                    <li>Clique <strong>"Deploy"</strong></li>
-                    <li>Copie l'URL générée (ex: <code>site-2-xxxxx.vercel.app</code>)</li>
-                  </ol>
-                  <div class="tip">💡 Vite détecte automatiquement React. Le build produit un SPA dans <code>dist/</code>.</div>
-                </div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-desc">Site déployé → <code>sites-clients-6pfh.vercel.app</code></div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -650,30 +595,16 @@ git push -u origin master</div>
         <!-- 5.4 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-5-4">
-              <div class="step-check"><input type="checkbox" id="check-5-4" onchange="updateProgress()"><label for="check-5-4"></label></div>
+            <div class="step done" id="step-5-4">
+              <div class="step-check"><input type="checkbox" id="check-5-4" checked onchange="updateProgress()"><label for="check-5-4"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">5.4</span>
                   <span class="step-title">Déployer Site 3 (PGC Cleaners)</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Déploiement du site Angular PGC Cleaners.</div>
-                <div class="instructions">
-                  <strong>Étapes détaillées :</strong>
-                  <ol>
-                    <li>Dans Vercel Dashboard, <strong>"Add New..."</strong> → <strong>"Project"</strong></li>
-                    <li>Sélectionne le dépôt <code>sites-clients</code></li>
-                    <li><strong>Framework :</strong> sélectionne <strong>"Angular"</strong></li>
-                    <li><strong>Root Directory :</strong> <code>site-3-pgc-cleaners</code></li>
-                    <li><strong>Build Command :</strong> <code>npm run build</code> (pré-rempli)</li>
-                    <li><strong>Output Directory :</strong> <code>dist/app/browser</code></li>
-                    <li>Clique <strong>"Deploy"</strong></li>
-                    <li>Copie l'URL générée (ex: <code>site-3-xxxxx.vercel.app</code>)</li>
-                  </ol>
-                  <div class="tip">💡 Même structure que Site 1 — Angular 21 avec SSR. Vercel gère le routage.</div>
-                </div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-desc">Site déployé → <code>sites-clients-bbl5.vercel.app</code></div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -691,26 +622,16 @@ git push -u origin master</div>
         <!-- 6.1 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-6-1">
-              <div class="step-check"><input type="checkbox" id="check-6-1" onchange="updateProgress()"><label for="check-6-1"></label></div>
+            <div class="step done" id="step-6-1">
+              <div class="step-check"><input type="checkbox" id="check-6-1" checked onchange="updateProgress()"><label for="check-6-1"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">6.1</span>
                   <span class="step-title">Donner les 4 URLs à l'IA</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Envoie les URLs Vercel à l'IA pour mise à jour automatique.</div>
-                <div class="instructions">
-                  <strong>Quand tu as les 4 URLs, colle-les ici :</strong>
-                  <ol>
-                    <li><strong>Admin Panel :</strong> <code>_______________ vercel.app</code></li>
-                    <li><strong>Green Innovators :</strong> <code>_______________ vercel.app</code></li>
-                    <li><strong>LE GETUP :</strong> <code>_______________ vercel.app</code></li>
-                    <li><strong>PGC Cleaners :</strong> <code>_______________ vercel.app</code></li>
-                  </ol>
-                  <div class="tip">💡 Copie les URLs depuis le dashboard Vercel (onglet "Domains" de chaque projet).</div>
-                </div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-desc">4 URLs reçues et enregistrées.</div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -719,23 +640,16 @@ git push -u origin master</div>
         <!-- 6.2 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-6-2">
-              <div class="step-check"><input type="checkbox" id="check-6-2" onchange="updateProgress()"><label for="check-6-2"></label></div>
+            <div class="step done" id="step-6-2">
+              <div class="step-check"><input type="checkbox" id="check-6-2" checked onchange="updateProgress()"><label for="check-6-2"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">6.2</span>
-                  <span class="step-title">Mettre à jour admin.js + firebase-config.js</span>
+                  <span class="step-title">Mettre à jour admin.js + admin/index.html + firebase_setup.py</span>
                   <span class="badge badge--auto">AUTO</span>
                 </div>
-                <div class="step-desc">Mise à jour automatique des URLs dans le code.</div>
-                <div class="instructions">
-                  <strong>Fichiers modifiés automatiquement :</strong>
-                  <ul>
-                    <li><code>admin/js/admin.js</code> → URLs des sites dans le panneau admin</li>
-                    <li><code>firebase-config.js</code> → Configuration Firebase + endpoints</li>
-                  </ul>
-                </div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-desc">3 fichiers mis à jour avec les URLs Vercel.</div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -744,25 +658,16 @@ git push -u origin master</div>
         <!-- 6.3 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-6-3">
-              <div class="step-check"><input type="checkbox" id="check-6-3" onchange="updateProgress()"><label for="check-6-3"></label></div>
+            <div class="step done" id="step-6-3">
+              <div class="step-check"><input type="checkbox" id="check-6-3" checked onchange="updateProgress()"><label for="check-6-3"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">6.3</span>
                   <span class="step-title">Mettre à jour les URLs dans Firestore</span>
                   <span class="badge badge--auto">AUTO</span>
                 </div>
-                <div class="step-desc">Script Python pour mettre à jour les champs <code>url</code> dans Firestore.</div>
-                <div class="cmd">python firebase_setup.py --status</div>
-                <div class="instructions">
-                  <strong>Le script met à jour la collection <code>sites</code> :</strong>
-                  <ul>
-                    <li>Champ <code>url</code> pour chaque site</li>
-                    <li>Vérifie la connexion Firebase</li>
-                    <li>Teste la lecture/écriture</li>
-                  </ul>
-                </div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-desc">Firestore mis à jour — 3 documents avec nouvelles URLs.</div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -771,18 +676,16 @@ git push -u origin master</div>
         <!-- 6.4 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-6-4">
-              <div class="step-check"><input type="checkbox" id="check-6-4" onchange="updateProgress()"><label for="check-6-4"></label></div>
+            <div class="step done" id="step-6-4">
+              <div class="step-check"><input type="checkbox" id="check-6-4" checked onchange="updateProgress()"><label for="check-6-4"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">6.4</span>
                   <span class="step-title">Commit + push des mises à jour</span>
                   <span class="badge badge--auto">AUTO</span>
                 </div>
-                <div class="step-desc">Commit et push les changements. Vercel redéploie automatiquement.</div>
-                <div class="cmd">git add . && git commit -m "Update URLs"
-git push</div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-desc">4 commits poussés. Vercel redéploie automatiquement.</div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
