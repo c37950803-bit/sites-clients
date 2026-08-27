@@ -235,6 +235,29 @@
       line-height: 1.7; white-space: pre; overflow-x: auto;
     }
 
+    /* Instructions box */
+    .instructions {
+      margin-top: 8px; padding: 12px 16px;
+      background: #f8fafc; border-left: 3px solid var(--blue);
+      font-size: 12px; line-height: 1.8; color: var(--ink-soft);
+    }
+    .instructions ol {
+      margin: 4px 0 0 16px; padding: 0;
+    }
+    .instructions li {
+      margin-bottom: 4px;
+    }
+    .instructions code {
+      font-family: var(--mono); font-size: 11px;
+      background: rgba(0,0,0,0.04); padding: 1px 4px; border-radius: 2px;
+    }
+    .instructions strong { color: var(--ink); }
+    .instructions .tip {
+      margin-top: 8px; padding: 8px 12px;
+      background: rgba(37, 99, 235, 0.05); border-radius: 3px;
+      font-size: 11px; color: var(--blue);
+    }
+
     /* ── RULE / DIVIDER ─────────────────────────────────────────────── */
     .rule {
       border: none; border-top: 1px solid rgba(0,0,0,0.10);
@@ -279,7 +302,7 @@
         <div class="band">
           <div style="grid-column: 1 / -1;">
             <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-            <div class="progress-label" id="progress-text">3 / 22 étapes — 14%</div>
+            <div class="progress-label" id="progress-text">6 / 22 étapes — 27%</div>
           </div>
         </div>
 
@@ -362,8 +385,8 @@ git push -u origin master</div>
         <!-- 2.1 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-2-1">
-              <div class="step-check"><input type="checkbox" id="check-2-1" onchange="updateProgress()"><label for="check-2-1"></label></div>
+            <div class="step done" id="step-2-1">
+              <div class="step-check"><input type="checkbox" id="check-2-1" checked onchange="updateProgress()"><label for="check-2-1"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">2.1</span>
@@ -372,7 +395,7 @@ git push -u origin master</div>
                 </div>
                 <div class="step-desc">Dépendances Site 1 : Angular 21 + Tailwind.</div>
                 <div class="cmd">cd site-1-green-innovators && npm install</div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -381,8 +404,8 @@ git push -u origin master</div>
         <!-- 2.2 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-2-2">
-              <div class="step-check"><input type="checkbox" id="check-2-2" onchange="updateProgress()"><label for="check-2-2"></label></div>
+            <div class="step done" id="step-2-2">
+              <div class="step-check"><input type="checkbox" id="check-2-2" checked onchange="updateProgress()"><label for="check-2-2"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">2.2</span>
@@ -391,7 +414,7 @@ git push -u origin master</div>
                 </div>
                 <div class="step-desc">Dépendances Site 2 : React 19 + Vite.</div>
                 <div class="cmd">cd site-2-legetup && npm install</div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -400,8 +423,8 @@ git push -u origin master</div>
         <!-- 2.3 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-2-3">
-              <div class="step-check"><input type="checkbox" id="check-2-3" onchange="updateProgress()"><label for="check-2-3"></label></div>
+            <div class="step done" id="step-2-3">
+              <div class="step-check"><input type="checkbox" id="check-2-3" checked onchange="updateProgress()"><label for="check-2-3"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">2.3</span>
@@ -410,7 +433,7 @@ git push -u origin master</div>
                 </div>
                 <div class="step-desc">Dépendances Site 3 : Angular 21 + Tailwind.</div>
                 <div class="cmd">cd site-3-pgc-cleaners && npm install</div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -428,17 +451,16 @@ git push -u origin master</div>
         <!-- 3.1 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-3-1">
-              <div class="step-check"><input type="checkbox" id="check-3-1" onchange="updateProgress()"><label for="check-3-1"></label></div>
+            <div class="step done" id="step-3-1">
+              <div class="step-check"><input type="checkbox" id="check-3-1" checked onchange="updateProgress()"><label for="check-3-1"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">3.1</span>
                   <span class="step-title">Build Site 1 (Green Innovators)</span>
                   <span class="badge badge--auto">AUTO</span>
                 </div>
-                <div class="step-desc">Vérification compilation Site 1.</div>
-                <div class="cmd">cd site-1-green-innovators && npm run build</div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-desc">Build Angular réussi — 451 KB initial, output: <code>dist/app</code></div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -447,17 +469,16 @@ git push -u origin master</div>
         <!-- 3.2 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-3-2">
-              <div class="step-check"><input type="checkbox" id="check-3-2" onchange="updateProgress()"><label for="check-3-2"></label></div>
+            <div class="step done" id="step-3-2">
+              <div class="step-check"><input type="checkbox" id="check-3-2" checked onchange="updateProgress()"><label for="check-3-2"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">3.2</span>
                   <span class="step-title">Build Site 2 (LE GETUP)</span>
                   <span class="badge badge--auto">AUTO</span>
                 </div>
-                <div class="step-desc">Vérification compilation Site 2.</div>
-                <div class="cmd">cd site-2-legetup && npm run build</div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-desc">Build Vite réussi — 363 KB, output: <code>dist</code></div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -466,17 +487,16 @@ git push -u origin master</div>
         <!-- 3.3 -->
         <div class="band">
           <div style="grid-column: 1 / -1;">
-            <div class="step" id="step-3-3">
-              <div class="step-check"><input type="checkbox" id="check-3-3" onchange="updateProgress()"><label for="check-3-3"></label></div>
+            <div class="step done" id="step-3-3">
+              <div class="step-check"><input type="checkbox" id="check-3-3" checked onchange="updateProgress()"><label for="check-3-3"></label></div>
               <div class="step-content">
                 <div class="step-title-row">
                   <span class="step-num">3.3</span>
                   <span class="step-title">Build Site 3 (PGC Cleaners)</span>
                   <span class="badge badge--auto">AUTO</span>
                 </div>
-                <div class="step-desc">Vérification compilation Site 3.</div>
-                <div class="cmd">cd site-3-pgc-cleaners && npm run build</div>
-                <div class="step-time">⏳ En attente</div>
+                <div class="step-desc">Build Angular réussi — 288 KB initial, output: <code>dist/app</code></div>
+                <div class="step-time done">✅ Terminé le 27/08/2026</div>
               </div>
             </div>
           </div>
@@ -502,7 +522,20 @@ git push -u origin master</div>
                   <span class="step-title">Aller sur vercel.com et Sign Up</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Ouvre <code>https://vercel.com</code> → "Sign Up" → connecte-toi avec GitHub. Autorise l'accès aux repos.</div>
+                <div class="step-desc">Ouvre <code>https://vercel.com</code> et crée un compte.</div>
+                <div class="instructions">
+                  <strong>Étapes détaillées :</strong>
+                  <ol>
+                    <li>Ouvre <code>https://vercel.com</code></li>
+                    <li>Clique sur <strong>"Sign Up"</strong> (en haut à droite)</li>
+                    <li>Choisis <strong>"Continue with GitHub"</strong></li>
+                    <li>Connecte-toi avec ton compte GitHub (<code>c37950803-bit</code>)</li>
+                    <li>Autorise l'accès Vercel à tes repositories</li>
+                    <li>Choisis le plan <strong>"Hobby"</strong> (gratuit, illimité)</li>
+                    <li>Remplis le questionnaire rapide (perso, France, etc.)</li>
+                  </ol>
+                  <div class="tip">💡 Une fois connecté, tu devrais voir le dashboard Vercel avec la liste de tes projets.</div>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -529,7 +562,21 @@ git push -u origin master</div>
                   <span class="step-title">Déployer l'admin panel</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Vercel → "Add New" → "Project" → <code>sites-clients</code>. Framework: Other, Root: <code>admin</code>, Output: <code>.</code></div>
+                <div class="step-desc">Déploiement du panneau d'administration Firebase.</div>
+                <div class="instructions">
+                  <strong>Étapes détaillées :</strong>
+                  <ol>
+                    <li>Dans Vercel Dashboard, clique <strong>"Add New..."</strong> → <strong>"Project"</strong></li>
+                    <li>Connecte le dépôt GitHub <code>c37950803-bit/sites-clients</code></li>
+                    <li>Vercel détecte le framework : change à <strong>"Other"</strong></li>
+                    <li><strong>Root Directory :</strong> clique "Change" → sélectionne <code>admin</code></li>
+                    <li><strong>Build Command :</strong> laisse vide (pas de build nécessaire)</li>
+                    <li><strong>Output Directory :</strong> <code>.</code></li>
+                    <li>Clique <strong>"Deploy"</strong></li>
+                    <li>Copie l'URL générée (ex: <code>admin-xxxxx.vercel.app</code>)</li>
+                  </ol>
+                  <div class="tip">💡 Le dossier <code>admin/</code> contient du HTML/CSS/JS brut, pas de build nécessaire.</div>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -547,7 +594,21 @@ git push -u origin master</div>
                   <span class="step-title">Déployer Site 1 (Green Innovators)</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Framework: Angular, Root: <code>site-1-green-innovators</code>, Output: <code>dist/app/browser</code></div>
+                <div class="step-desc">Déploiement du site Angular Green Innovators.</div>
+                <div class="instructions">
+                  <strong>Étapes détaillées :</strong>
+                  <ol>
+                    <li>Dans Vercel Dashboard, <strong>"Add New..."</strong> → <strong>"Project"</strong></li>
+                    <li>Sélectionne le même dépôt <code>sites-clients</code></li>
+                    <li><strong>Framework :</strong> sélectionne <strong>"Angular"</strong></li>
+                    <li><strong>Root Directory :</strong> <code>site-1-green-innovators</code></li>
+                    <li><strong>Build Command :</strong> <code>npm run build</code> (pré-rempli)</li>
+                    <li><strong>Output Directory :</strong> <code>dist/app/browser</code></li>
+                    <li>Clique <strong>"Deploy"</strong> et attends le build (~1 min)</li>
+                    <li>Copie l'URL générée (ex: <code>site-1-xxxxx.vercel.app</code>)</li>
+                  </ol>
+                  <div class="tip">💡 Angular SSR est inclus mais Vercel gère automatiquement le routing avec le fichier <code>.vercel/output/config.json</code>.</div>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -565,7 +626,21 @@ git push -u origin master</div>
                   <span class="step-title">Déployer Site 2 (LE GETUP)</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Framework: Vite, Root: <code>site-2-legetup</code>, Output: <code>dist</code></div>
+                <div class="step-desc">Déploiement du site React/Vite LE GETUP.</div>
+                <div class="instructions">
+                  <strong>Étapes détaillées :</strong>
+                  <ol>
+                    <li>Dans Vercel Dashboard, <strong>"Add New..."</strong> → <strong>"Project"</strong></li>
+                    <li>Sélectionne le dépôt <code>sites-clients</code></li>
+                    <li><strong>Framework :</strong> sélectionne <strong>"Vite"</strong></li>
+                    <li><strong>Root Directory :</strong> <code>site-2-legetup</code></li>
+                    <li><strong>Build Command :</strong> <code>npm run build</code> (pré-rempli)</li>
+                    <li><strong>Output Directory :</strong> <code>dist</code></li>
+                    <li>Clique <strong>"Deploy"</strong></li>
+                    <li>Copie l'URL générée (ex: <code>site-2-xxxxx.vercel.app</code>)</li>
+                  </ol>
+                  <div class="tip">💡 Vite détecte automatiquement React. Le build produit un SPA dans <code>dist/</code>.</div>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -583,7 +658,21 @@ git push -u origin master</div>
                   <span class="step-title">Déployer Site 3 (PGC Cleaners)</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Framework: Angular, Root: <code>site-3-pgc-cleaners</code>, Output: <code>dist/app/browser</code></div>
+                <div class="step-desc">Déploiement du site Angular PGC Cleaners.</div>
+                <div class="instructions">
+                  <strong>Étapes détaillées :</strong>
+                  <ol>
+                    <li>Dans Vercel Dashboard, <strong>"Add New..."</strong> → <strong>"Project"</strong></li>
+                    <li>Sélectionne le dépôt <code>sites-clients</code></li>
+                    <li><strong>Framework :</strong> sélectionne <strong>"Angular"</strong></li>
+                    <li><strong>Root Directory :</strong> <code>site-3-pgc-cleaners</code></li>
+                    <li><strong>Build Command :</strong> <code>npm run build</code> (pré-rempli)</li>
+                    <li><strong>Output Directory :</strong> <code>dist/app/browser</code></li>
+                    <li>Clique <strong>"Deploy"</strong></li>
+                    <li>Copie l'URL générée (ex: <code>site-3-xxxxx.vercel.app</code>)</li>
+                  </ol>
+                  <div class="tip">💡 Même structure que Site 1 — Angular 21 avec SSR. Vercel gère le routage.</div>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -610,7 +699,17 @@ git push -u origin master</div>
                   <span class="step-title">Donner les 4 URLs à l'IA</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Colle les 4 URLs Vercel pour mise à jour automatique.</div>
+                <div class="step-desc">Envoie les URLs Vercel à l'IA pour mise à jour automatique.</div>
+                <div class="instructions">
+                  <strong>Quand tu as les 4 URLs, colle-les ici :</strong>
+                  <ol>
+                    <li><strong>Admin Panel :</strong> <code>_______________ vercel.app</code></li>
+                    <li><strong>Green Innovators :</strong> <code>_______________ vercel.app</code></li>
+                    <li><strong>LE GETUP :</strong> <code>_______________ vercel.app</code></li>
+                    <li><strong>PGC Cleaners :</strong> <code>_______________ vercel.app</code></li>
+                  </ol>
+                  <div class="tip">💡 Copie les URLs depuis le dashboard Vercel (onglet "Domains" de chaque projet).</div>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -628,7 +727,14 @@ git push -u origin master</div>
                   <span class="step-title">Mettre à jour admin.js + firebase-config.js</span>
                   <span class="badge badge--auto">AUTO</span>
                 </div>
-                <div class="step-desc">Mise à jour des URLs dans <code>admin/js/admin.js</code> et <code>firebase-config.js</code>.</div>
+                <div class="step-desc">Mise à jour automatique des URLs dans le code.</div>
+                <div class="instructions">
+                  <strong>Fichiers modifiés automatiquement :</strong>
+                  <ul>
+                    <li><code>admin/js/admin.js</code> → URLs des sites dans le panneau admin</li>
+                    <li><code>firebase-config.js</code> → Configuration Firebase + endpoints</li>
+                  </ul>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -646,8 +752,16 @@ git push -u origin master</div>
                   <span class="step-title">Mettre à jour les URLs dans Firestore</span>
                   <span class="badge badge--auto">AUTO</span>
                 </div>
-                <div class="step-desc">Script Python pour mettre à jour les champs <code>url</code>.</div>
+                <div class="step-desc">Script Python pour mettre à jour les champs <code>url</code> dans Firestore.</div>
                 <div class="cmd">python firebase_setup.py --status</div>
+                <div class="instructions">
+                  <strong>Le script met à jour la collection <code>sites</code> :</strong>
+                  <ul>
+                    <li>Champ <code>url</code> pour chaque site</li>
+                    <li>Vérifie la connexion Firebase</li>
+                    <li>Teste la lecture/écriture</li>
+                  </ul>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -665,7 +779,9 @@ git push -u origin master</div>
                   <span class="step-title">Commit + push des mises à jour</span>
                   <span class="badge badge--auto">AUTO</span>
                 </div>
-                <div class="step-desc">Commit + push. Vercel redéploie automatiquement.</div>
+                <div class="step-desc">Commit et push les changements. Vercel redéploie automatiquement.</div>
+                <div class="cmd">git add . && git commit -m "Update URLs"
+git push</div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -692,7 +808,18 @@ git push -u origin master</div>
                   <span class="step-title">Tester le panel admin</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Ouvre l'URL admin. Vérifie Firebase connecté + 3 cartes.</div>
+                <div class="step-desc">Vérification du panneau d'administration Firebase.</div>
+                <div class="instructions">
+                  <strong>Checklist :</strong>
+                  <ol>
+                    <li>Ouvre l'URL admin (<code>_______________ vercel.app</code>)</li>
+                    <li>Vérifie que la connexion Firebase fonctionne (3 cartes s'affichent)</li>
+                    <li>Vérifie que les noms des sites sont corrects</li>
+                    <li>Vérifie que les URLs pointent vers les bons sites</li>
+                    <li>Teste le bouton "Voir le site" pour chaque site</li>
+                  </ol>
+                  <div class="tip">💡 Si Firebase ne se connecte pas, vérifie les règles Firestore et la config Firebase.</div>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -710,7 +837,19 @@ git push -u origin master</div>
                   <span class="step-title">Tester la désactivation</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Firestore → <code>actif: false</code> → vérifie admin → remets <code>true</code>.</div>
+                <div class="step-desc">Teste l'activation/désactivation via Firebase.</div>
+                <div class="instructions">
+                  <strong>Étapes :</strong>
+                  <ol>
+                    <li>Ouvre <strong>Firebase Console</strong> → <strong>Firestore Database</strong></li>
+                    <li>Trouve la collection <code>sites</code></li>
+                    <li>Sélectionne un site (ex: <code>green-innovators</code>)</li>
+                    <li>Champ <code>actif</code> → passe de <code>true</code> à <code>false</code></li>
+                    <li>Retourne dans l'admin → le site devrait être marqué "Inactif"</li>
+                    <li>Remets <code>actif</code> à <code>true</code></li>
+                  </ol>
+                  <div class="tip">💡 La désactivation empêche l'accès au site. Vérifie aussi que le lien "Voir le site" est désactivé.</div>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -728,7 +867,20 @@ git push -u origin master</div>
                   <span class="step-title">Tester les 3 sites</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">Ouvre chaque site. Vérifie aucun lien admin.</div>
+                <div class="step-desc">Vérification complète des 3 sites déployés.</div>
+                <div class="instructions">
+                  <strong>Checklist pour chaque site :</strong>
+                  <ol>
+                    <li>Ouvre l'URL du site</li>
+                    <li>Vérifie le chargement (pas d'erreur 404/500)</li>
+                    <li>Vérifie que les images s'affichent</li>
+                    <li>Vérifie la navigation (liens fonctionnels)</li>
+                    <li>Vérifie responsive (mobile + desktop)</li>
+                    <li>Vérifie qu'aucun lien vers admin n'existe</li>
+                    <li>Teste les formulaires de contact</li>
+                  </ol>
+                  <div class="tip">💡 Ouvre chaque site dans un nouvel onglet pour comparer avec la version locale.</div>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -755,7 +907,15 @@ git push -u origin master</div>
                   <span class="step-title">Sécuriser les règles Firestore</span>
                   <span class="badge badge--auto">AUTO</span>
                 </div>
-                <div class="step-desc">Règles de sécurité Firestore (lecture seule publique).</div>
+                <div class="step-desc">Configuration des règles de sécurité Firestore.</div>
+                <div class="instructions">
+                  <strong>La sécurité inclut :</strong>
+                  <ul>
+                    <li>Lecture publique pour la collection <code>sites</code></li>
+                    <li>Écriture réservée aux administrateurs</li>
+                    <li>Blocage des écritures anonymes</li>
+                  </ul>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -773,7 +933,16 @@ git push -u origin master</div>
                   <span class="step-title">Mettre à jour CONTEXTE ABSOLUE.txt</span>
                   <span class="badge badge--auto">AUTO</span>
                 </div>
-                <div class="step-desc">Mise à jour du fichier de contexte avec URLs finales.</div>
+                <div class="step-desc">Mise à jour du fichier de contexte avec les URLs finales.</div>
+                <div class="instructions">
+                  <strong>Informations ajoutées :</strong>
+                  <ul>
+                    <li>URLs Vercel des 4 projets</li>
+                    <li>IDs des projets Vercel</li>
+                    <li>Configuration Firebase finale</li>
+                    <li>Historique des déploiements</li>
+                  </ul>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -791,7 +960,18 @@ git push -u origin master</div>
                   <span class="step-title">Déploiement terminé</span>
                   <span class="badge badge--you">TOI</span>
                 </div>
-                <div class="step-desc">3 sites en ligne. Activation/désactivation via Firebase.</div>
+                <div class="step-desc">Validation finale du déploiement.</div>
+                <div class="instructions">
+                  <strong>Récapitulatif :</strong>
+                  <ul>
+                    <li>✅ Admin Panel déployé et fonctionnel</li>
+                    <li>✅ 3 sites en ligne</li>
+                    <li>✅ Activation/désactivation via Firebase</li>
+                    <li>✅ Sécurité Firestore configurée</li>
+                    <li>✅ Documentation à jour</li>
+                  </ul>
+                  <div class="tip">🎉 Félicitations ! Le déploiement est terminé. Les sites sont maintenant accessibles publiquement.</div>
+                </div>
                 <div class="step-time">⏳ En attente</div>
               </div>
             </div>
@@ -860,7 +1040,7 @@ git push -u origin master</div>
           done++;
           step.classList.add('done');
           var timeEl = step.querySelector('.step-time');
-          if (timeEl && !timeEl.classList.contains('done')) {
+          if (timeEl && !timeEl.classList.contains('done') && !timeEl.dataset.fixed) {
             var now = new Date();
             var ts = now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
             timeEl.textContent = '\u2705 Termin\u00e9 le ' + ts;
