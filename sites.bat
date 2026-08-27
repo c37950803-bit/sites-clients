@@ -6,14 +6,15 @@ color 0A
 cls
 echo.
 echo  ==========================================
-echo   SITES CLIENTS — Etat en temps reel
+echo   SITES CLIENTS — Gestion
 echo  ==========================================
 echo.
 echo   [1] Verifier l'etat des sites
 echo   [2] Generer le fichier TXT avec les liens
 echo   [3] Ouvrir les 3 sites
 echo   [4] Ouvrir le panel admin
-echo   [5] Quitter
+echo   [5] Activer / Desactiver un site
+echo   [6] Quitter
 echo.
 echo  ==========================================
 echo.
@@ -24,7 +25,8 @@ if "%choice%"=="1" goto CHECK
 if "%choice%"=="2" goto LINKS
 if "%choice%"=="3" goto OPEN
 if "%choice%"=="4" goto ADMIN
-if "%choice%"=="5" goto END
+if "%choice%"=="5" goto TOGGLE
+if "%choice%"=="6" goto END
 
 echo  Choix invalide
 timeout /t 2 >nul
@@ -97,6 +99,48 @@ echo  Ouverture du panel admin...
 echo.
 start https://sites-clients.vercel.app
 echo  [OK] Panel admin ouvert
+echo.
+pause
+goto MENU
+
+:TOGGLE
+cls
+echo.
+echo  ==========================================
+echo   ACTIVER / DESACTIVER UN SITE
+echo  ==========================================
+echo.
+echo   [1] green-innovators
+echo   [2] legetup
+echo   [3] pgc-cleaners
+echo.
+set /p site_id="  Site : "
+
+if "%site_id%"=="1" set "site_id=green-innovators"
+if "%site_id%"=="2" set "site_id=legetup"
+if "%site_id%"=="3" set "site_id=pgc-cleaners"
+
+echo.
+echo   [A] Activer
+echo   [D] Desactiver
+echo.
+set /p action="  Action : "
+
+if /i "%action%"=="A" (
+    set "actif=true"
+    echo.
+    echo  Activation de %site_id%...
+) else if /i "%action%"=="D" (
+    set "actif=false"
+    echo.
+    echo  Desactivation de %site_id%...
+) else (
+    echo  Action invalide
+    pause
+    goto MENU
+)
+
+python firebase\firebase_setup.py --site %site_id% --actif %actif%
 echo.
 pause
 goto MENU
