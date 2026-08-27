@@ -6,7 +6,7 @@ color 0A
 cls
 echo.
 echo  ==========================================
-echo   SITES CLIENTS — Gestion
+echo   SITES CLIENTS - Gestion
 echo  ==========================================
 echo.
 echo   [1] Verifier l'etat des sites
