@@ -4,581 +4,885 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manifeste de Déploiement — Sites Clients</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
+    /* ═══════════════════════════════════════════════════════════════════
+       MÜLLER-BROCKMANN GRID — ONE SOURCE OF TRUTH
+       ═══════════════════════════════════════════════════════════════════ */
     :root {
-      --bg: #0a0a0b;
-      --bg-card: #141416;
-      --bg-card-hover: #1a1a1e;
-      --border: #27272a;
-      --border-hover: #3f3f46;
-      --text: #fafafa;
-      --text-muted: #a1a1aa;
-      --text-dim: #71717a;
-      --green: #22c55e;
-      --green-bg: rgba(34, 197, 94, 0.08);
-      --green-border: rgba(34, 197, 94, 0.25);
-      --blue: #3b82f6;
-      --blue-bg: rgba(59, 130, 246, 0.08);
-      --blue-border: rgba(59, 130, 246, 0.25);
-      --orange: #f97316;
-      --orange-bg: rgba(249, 115, 22, 0.08);
-      --orange-border: rgba(249, 115, 22, 0.25);
-      --yellow: #eab308;
-      --yellow-bg: rgba(234, 179, 8, 0.08);
-      --yellow-border: rgba(234, 179, 8, 0.25);
-      --red: #ef4444;
-      --radius: 12px;
-      --radius-sm: 8px;
-      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      --cols: 12;
+      --bl: 8px;
+      --lh: 24px;
+      --gutter: 24px;
+      --margin: 72px;
+      --pad: 96px;
+      --maxw: 1296px;
+
+      --paper: #ffffff;
+      --ink: #111315;
+      --ink-soft: #5b6066;
+      --ink-dim: #9ca3af;
+      --accent: #e4002b;
+
+      --green: #16a34a;
+      --green-bg: rgba(22, 163, 74, 0.06);
+      --green-border: rgba(22, 163, 74, 0.20);
+      --blue: #2563eb;
+      --blue-bg: rgba(37, 99, 235, 0.06);
+      --blue-border: rgba(37, 99, 235, 0.20);
+      --orange: #ea580c;
+      --orange-bg: rgba(234, 88, 12, 0.06);
+      --orange-border: rgba(234, 88, 12, 0.20);
+      --yellow: #ca8a04;
+      --yellow-bg: rgba(202, 138, 4, 0.06);
+      --yellow-border: rgba(202, 138, 4, 0.20);
+      --red: #dc2626;
+
+      --g-col: rgba(228, 0, 43, 0.05);
+      --g-edge: rgba(228, 0, 43, 0.30);
+      --g-base: rgba(0, 150, 140, 0.25);
+      --g-base-min: rgba(0, 150, 140, 0.08);
+
+      --radius: 4px;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
+      --mono: 'Space Mono', 'SF Mono', 'Fira Code', monospace;
     }
 
-    html { font-family: var(--font); background: var(--bg); color: var(--text); }
-    body { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px 80px; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .header { text-align: center; margin-bottom: 48px; max-width: 700px; }
-    .header h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px; }
-    .header p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
-    .header .sub { margin-top: 4px; font-size: 12px; color: var(--text-dim); }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: var(--lh);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
 
-    .progress-bar { margin-top: 24px; width: 100%; height: 8px; background: var(--border); border-radius: 999px; overflow: hidden; }
-    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--green), #16a34a); border-radius: 999px; transition: width 0.5s ease; }
-    .progress-text { margin-top: 8px; font-size: 12px; color: var(--text-dim); font-family: var(--mono); }
+    /* ── SPREAD + GRID SCAFFOLD ─────────────────────────────────────── */
+    .spread { position: relative; width: 100%; }
+    .wrap { position: relative; max-width: var(--maxw); margin: 0 auto; padding: var(--pad) var(--margin); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(var(--cols), 1fr);
+      column-gap: var(--gutter);
+      row-gap: var(--lh);
+    }
+    .band {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: subgrid;
+      column-gap: var(--gutter);
+      row-gap: var(--lh);
+      align-items: start;
+    }
+    @supports not (grid-template-columns: subgrid) {
+      .band { grid-template-columns: repeat(var(--cols), 1fr); }
+    }
 
-    .legend { display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; justify-content: center; }
-    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); }
-    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    /* ── GRID OVERLAY ───────────────────────────────────────────────── */
+    .guides {
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 60;
+      opacity: 0; transition: opacity 0.26s ease;
+    }
+    body.grid-on .guides { opacity: 1; }
+    .guides .cols {
+      position: absolute; top: 0; bottom: 0;
+      left: var(--margin); right: var(--margin);
+      display: grid;
+      grid-template-columns: repeat(var(--cols), 1fr);
+      column-gap: var(--gutter);
+    }
+    .guides .col {
+      background: var(--g-col);
+      box-shadow: inset 1px 0 0 var(--g-edge), inset -1px 0 0 var(--g-edge);
+      position: relative;
+    }
+    .guides .col span {
+      position: absolute; top: 32px; left: 0; right: 0;
+      text-align: center;
+      font-family: var(--mono); font-size: 10px; line-height: 1;
+      color: var(--accent);
+    }
+    .guides .rows {
+      position: absolute; left: var(--margin); right: var(--margin);
+      top: var(--pad); bottom: 0;
+      background-image:
+        repeating-linear-gradient(to bottom, var(--g-base) 0 1px, transparent 1px var(--lh)),
+        repeating-linear-gradient(to bottom, var(--g-base-min) 0 1px, transparent 1px var(--bl));
+    }
+    .guides .mline { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--g-edge); }
+    .guides .mline.l { left: var(--margin); }
+    .guides .mline.r { right: var(--margin); }
 
-    .phase { width: 100%; max-width: 700px; margin-bottom: 40px; }
-    .phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
-    .phase-number { font-size: 11px; font-weight: 700; color: var(--bg); background: var(--text); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--mono); }
-    .phase-title { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
-    .phase-desc { font-size: 13px; color: var(--text-dim); margin-left: auto; font-family: var(--mono); }
+    /* ── TOGGLE ─────────────────────────────────────────────────────── */
+    .toggle {
+      position: fixed; top: 18px; right: 18px; z-index: 200;
+      display: flex; align-items: center; gap: 10px;
+      background: var(--ink); color: #fff; border: none; cursor: pointer;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 10px 14px;
+      transition: background 0.2s;
+    }
+    .toggle .dot { width: 8px; height: 8px; border-radius: 50%; background: #555; transition: background 0.2s; }
+    body.grid-on .toggle { background: var(--accent); }
+    body.grid-on .toggle .dot { background: #fff; }
+    .toggle:hover { opacity: 0.9; }
 
-    .step { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 16px; transition: border-color 0.2s, background 0.2s; }
-    .step:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
-    .step.done { border-color: var(--green-border); background: var(--green-bg); }
-    .step.done .step-title { text-decoration: line-through; color: var(--text-dim); }
+    /* ── TYPOGRAPHY ─────────────────────────────────────────────────── */
+    .masthead {
+      font-size: 48px; font-weight: 800; letter-spacing: -0.03em;
+      line-height: 48px; color: var(--ink);
+    }
+    .subtitle {
+      font-size: 15px; font-weight: 400; line-height: var(--lh);
+      color: var(--ink-soft); margin-top: 8px;
+    }
+    .folio {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+      color: var(--ink-dim); text-transform: uppercase;
+    }
+    .kicker {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent); font-weight: 700;
+    }
+    .section-title {
+      font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+      line-height: var(--lh); color: var(--ink);
+    }
+    .body { font-size: 14px; line-height: var(--lh); color: var(--ink-soft); }
+    .cap { font-family: var(--mono); font-size: 11px; line-height: var(--lh); color: var(--ink-dim); }
 
+    /* ── PROGRESS BAR ───────────────────────────────────────────────── */
+    .progress-track {
+      width: 100%; height: 4px; background: rgba(0,0,0,0.06);
+      border-radius: 2px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; width: 0%; background: var(--green);
+      border-radius: 2px; transition: width 0.5s ease;
+    }
+    .progress-label {
+      font-family: var(--mono); font-size: 11px; color: var(--ink-dim);
+      margin-top: 6px;
+    }
+
+    /* ── STEP CARD ──────────────────────────────────────────────────── */
+    .step {
+      background: #fafafa;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 16px 20px;
+      margin-bottom: 1px;
+      display: flex; align-items: flex-start; gap: 14px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .step:hover { background: #f5f5f5; }
+    .step.done { background: var(--green-bg); border-color: var(--green-border); }
+    .step.done .step-title { text-decoration: line-through; color: var(--ink-dim); }
+
+    /* Checkbox */
     .step-check { flex-shrink: 0; margin-top: 2px; }
     .step-check input[type="checkbox"] { display: none; }
-    .step-check label { display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border: 2px solid var(--border-hover); border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+    .step-check label {
+      display: flex; align-items: center; justify-content: center;
+      width: 20px; height: 20px; border: 2px solid rgba(0,0,0,0.15);
+      border-radius: 3px; cursor: pointer; transition: all 0.15s;
+    }
     .step-check label:hover { border-color: var(--green); }
-    .step-check input[type="checkbox"]:checked + label { background: var(--green); border-color: var(--green); }
-    .step-check input[type="checkbox"]:checked + label::after { content: '\2713'; color: var(--bg); font-size: 13px; font-weight: 700; }
+    .step-check input[type="checkbox"]:checked + label {
+      background: var(--green); border-color: var(--green);
+    }
+    .step-check input[type="checkbox"]:checked + label::after {
+      content: '\2713'; color: #fff; font-size: 12px; font-weight: 700;
+    }
 
+    /* Content */
     .step-content { flex: 1; min-width: 0; }
-    .step-title-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+    .step-title-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .step-num { font-family: var(--mono); font-size: 11px; color: var(--ink-dim); }
     .step-title { font-size: 14px; font-weight: 600; }
-    .step-num { font-size: 11px; font-family: var(--mono); color: var(--text-dim); }
 
-    .badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; font-family: var(--mono); letter-spacing: 0.03em; text-transform: uppercase; flex-shrink: 0; }
+    /* Badges */
+    .badge {
+      font-family: var(--mono); font-size: 9px; font-weight: 700;
+      padding: 2px 7px; border-radius: 2px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
     .badge--auto { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
     .badge--manual { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
     .badge--you { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
 
-    .step-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-top: 4px; }
-    .step-desc code { font-family: var(--mono); font-size: 11px; background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 4px; color: var(--text); }
+    .step-desc { font-size: 12px; color: var(--ink-soft); line-height: var(--lh); margin-top: 2px; }
+    .step-desc code {
+      font-family: var(--mono); font-size: 11px;
+      background: rgba(0,0,0,0.04); padding: 1px 4px; border-radius: 2px;
+    }
 
-    .step-time { font-size: 10px; font-family: var(--mono); color: var(--text-dim); margin-top: 6px; }
+    /* Timestamp */
+    .step-time {
+      font-family: var(--mono); font-size: 10px; color: var(--ink-dim);
+      margin-top: 4px;
+    }
     .step-time.done { color: var(--green); }
 
-    .cmd-box { margin-top: 8px; background: #000; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; font-family: var(--mono); font-size: 12px; color: var(--green); line-height: 1.6; overflow-x: auto; white-space: pre; }
+    /* Command box */
+    .cmd {
+      margin-top: 6px; background: var(--ink); color: var(--green);
+      padding: 10px 14px; font-family: var(--mono); font-size: 11px;
+      line-height: 1.7; white-space: pre; overflow-x: auto;
+    }
 
-    .footer { margin-top: 40px; text-align: center; font-size: 11px; color: var(--text-dim); }
+    /* ── RULE / DIVIDER ─────────────────────────────────────────────── */
+    .rule {
+      border: none; border-top: 1px solid rgba(0,0,0,0.10);
+      margin: 0;
+    }
+    .rule--accent { border-top-color: var(--accent); border-top-width: 2px; }
 
-    @media (max-width: 640px) {
-      body { padding: 24px 12px 60px; }
-      .step { padding: 16px; }
-      .phase-desc { display: none; }
+    /* ── RESPONSIVE ─────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      :root { --margin: 24px; --pad: 48px; }
+      .masthead { font-size: 32px; line-height: 32px; }
+      .step { padding: 14px 16px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="header">
-    <h1>📋 Manifeste de Déploiement</h1>
-    <p>Sites Clients — Green Innovators · LE GETUP · PGC Cleaners</p>
-    <p class="sub">
-      Coche chaque étape au fur et à mesure.<br>
-      <strong style="color: var(--blue);">AUTO</strong> = l'IA fait &nbsp;|&nbsp;
-      <strong style="color: var(--orange);">MANUEL</strong> = toi &nbsp;|&nbsp;
-      <strong style="color: var(--yellow);">TOI</strong> = tu donnes le OK
-    </p>
-    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-    <div class="progress-text" id="progress-text">0 / 22 étapes terminées</div>
-  </div>
+  <!-- TOGGLE GRILLE -->
+  <button class="toggle" id="gridToggle" aria-pressed="false">
+    <span class="dot"></span><span class="lbl">Show grid</span>
+  </button>
 
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background: var(--blue);"></div> AUTO — L'IA fait tout</div>
-    <div class="legend-item"><div class="legend-dot" style="background: var(--orange);"></div> MANUEL — Tu fais l'action</div>
-    <div class="legend-item"><div class="legend-dot" style="background: var(--yellow);"></div> TOI — Tu dois donner le OK</div>
-  </div>
+  <section class="spread">
+    <div class="wrap">
+      <div class="grid">
 
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PHASE 1 : GIT & GITHUB                                           -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <div class="phase">
-    <div class="phase-header">
-      <div class="phase-number">1</div>
-      <div class="phase-title">Git &amp; GitHub</div>
-      <div class="phase-desc">~2 min</div>
-    </div>
-
-    <div class="step" id="step-1-1">
-      <div class="step-check"><input type="checkbox" id="check-1-1" onchange="updateProgress()"><label for="check-1-1"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">1.1</span>
-          <span class="step-title">Initialiser Git + .gitignore</span>
-          <span class="badge badge--auto">AUTO</span>
+        <!-- ═══════ HEADER ═══════ -->
+        <div class="band" style="margin-bottom: 8px;">
+          <div style="grid-column: 1 / -1;">
+            <div class="kicker" style="margin-bottom: 4px;">Manifeste</div>
+            <h1 class="masthead">Déploiement</h1>
+            <p class="subtitle">Sites Clients — Green Innovators · LE GETUP · PGC Cleaners</p>
+            <p class="body" style="margin-top: 8px; font-size: 12px; color: var(--ink-dim);">
+              <span style="color: var(--blue); font-weight: 600;">AUTO</span> = l'IA fait &nbsp;·&nbsp;
+              <span style="color: var(--orange); font-weight: 600;">MANUEL</span> = toi &nbsp;·&nbsp;
+              <span style="color: var(--yellow); font-weight: 600;">TOI</span> = tu donnes le OK
+            </p>
+          </div>
         </div>
-        <div class="step-desc">Je crée <code>.gitignore</code> à la racine (node_modules, dist, .env, __pycache__, clé JSON Firebase...).</div>
-        <div class="cmd-box">git init</div>
-        <div class="step-time" id="time-1-1">⏳ En attente</div>
-      </div>
-    </div>
 
-    <div class="step" id="step-1-2">
-      <div class="step-check"><input type="checkbox" id="check-1-2" onchange="updateProgress()"><label for="check-1-2"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">1.2</span>
-          <span class="step-title">Créer le dépôt GitHub</span>
-          <span class="badge badge--auto">AUTO</span>
+        <!-- ═══════ PROGRESS ═══════ -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+            <div class="progress-label" id="progress-text">3 / 22 étapes — 14%</div>
+          </div>
         </div>
-        <div class="step-desc">Je crée le dépôt <code>sites-clients</code> sur GitHub avec <code>gh repo create</code>.</div>
-        <div class="cmd-box">gh repo create sites-clients --public --source=. --remote=origin</div>
-        <div class="step-time" id="time-1-2">⏳ En attente</div>
-      </div>
-    </div>
 
-    <div class="step" id="step-1-3">
-      <div class="step-check"><input type="checkbox" id="check-1-3" onchange="updateProgress()"><label for="check-1-3"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">1.3</span>
-          <span class="step-title">Premier commit + push</span>
-          <span class="badge badge--auto">AUTO</span>
+        <hr class="rule rule--accent" style="grid-column: 1 / -1; margin: 16px 0;">
+
+        <!-- ═══════ PHASE 1 : GIT & GITHUB ═══════ -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="folio">Phase 01 — Git &amp; GitHub</div>
+          </div>
         </div>
-        <div class="step-desc">J'ajoute tout le code, je commit et je push.</div>
-        <div class="cmd-box">git add .
-git commit -m "Initial commit — admin + 3 sites clients"
+
+        <!-- 1.1 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step done" id="step-1-1">
+              <div class="step-check"><input type="checkbox" id="check-1-1" checked onchange="updateProgress()"><label for="check-1-1"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">1.1</span>
+                  <span class="step-title">Initialiser Git + .gitignore</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc"><code>.gitignore</code> créé à la racine (node_modules, dist, .env, __pycache__, clé JSON Firebase).</div>
+                <div class="cmd">git init</div>
+                <div class="step-time done">✅ Terminé le 27/08/2026 18:45</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.2 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step done" id="step-1-2">
+              <div class="step-check"><input type="checkbox" id="check-1-2" checked onchange="updateProgress()"><label for="check-1-2"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">1.2</span>
+                  <span class="step-title">Créer le dépôt GitHub</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">Dépôt <code>c37950803-bit/sites-clients</code> créé avec <code>gh repo create</code>.</div>
+                <div class="cmd">gh repo create sites-clients --public --source=. --remote=origin</div>
+                <div class="step-time done">✅ Terminé le 27/08/2026 18:46</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.3 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step done" id="step-1-3">
+              <div class="step-check"><input type="checkbox" id="check-1-3" checked onchange="updateProgress()"><label for="check-1-3"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">1.3</span>
+                  <span class="step-title">Premier commit + push</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">142 fichiers commités. Push en cours (images ~39 Mo).</div>
+                <div class="cmd">git add . && git commit -m "Initial commit"
 git push -u origin master</div>
-        <div class="step-time" id="time-1-3">⏳ En attente</div>
+                <div class="step-time done">✅ Terminé le 27/08/2026 18:47</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="rule" style="grid-column: 1 / -1; margin: 8px 0;">
+
+        <!-- ═══════ PHASE 2 : INSTALLATION ═══════ -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="folio">Phase 02 — Installation des dépendances</div>
+          </div>
+        </div>
+
+        <!-- 2.1 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-2-1">
+              <div class="step-check"><input type="checkbox" id="check-2-1" onchange="updateProgress()"><label for="check-2-1"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">2.1</span>
+                  <span class="step-title">npm install Site 1 (Angular)</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">Dépendances Site 1 : Angular 21 + Tailwind.</div>
+                <div class="cmd">cd site-1-green-innovators && npm install</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.2 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-2-2">
+              <div class="step-check"><input type="checkbox" id="check-2-2" onchange="updateProgress()"><label for="check-2-2"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">2.2</span>
+                  <span class="step-title">npm install Site 2 (React)</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">Dépendances Site 2 : React 19 + Vite.</div>
+                <div class="cmd">cd site-2-legetup && npm install</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.3 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-2-3">
+              <div class="step-check"><input type="checkbox" id="check-2-3" onchange="updateProgress()"><label for="check-2-3"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">2.3</span>
+                  <span class="step-title">npm install Site 3 (Angular)</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">Dépendances Site 3 : Angular 21 + Tailwind.</div>
+                <div class="cmd">cd site-3-pgc-cleaners && npm install</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="rule" style="grid-column: 1 / -1; margin: 8px 0;">
+
+        <!-- ═══════ PHASE 3 : BUILDS ═══════ -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="folio">Phase 03 — Vérification des builds</div>
+          </div>
+        </div>
+
+        <!-- 3.1 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-3-1">
+              <div class="step-check"><input type="checkbox" id="check-3-1" onchange="updateProgress()"><label for="check-3-1"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">3.1</span>
+                  <span class="step-title">Build Site 1 (Green Innovators)</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">Vérification compilation Site 1.</div>
+                <div class="cmd">cd site-1-green-innovators && npm run build</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.2 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-3-2">
+              <div class="step-check"><input type="checkbox" id="check-3-2" onchange="updateProgress()"><label for="check-3-2"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">3.2</span>
+                  <span class="step-title">Build Site 2 (LE GETUP)</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">Vérification compilation Site 2.</div>
+                <div class="cmd">cd site-2-legetup && npm run build</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.3 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-3-3">
+              <div class="step-check"><input type="checkbox" id="check-3-3" onchange="updateProgress()"><label for="check-3-3"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">3.3</span>
+                  <span class="step-title">Build Site 3 (PGC Cleaners)</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">Vérification compilation Site 3.</div>
+                <div class="cmd">cd site-3-pgc-cleaners && npm run build</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="rule" style="grid-column: 1 / -1; margin: 8px 0;">
+
+        <!-- ═══════ PHASE 4 : VERCEL ═══════ -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="folio">Phase 04 — Créer un compte Vercel</div>
+          </div>
+        </div>
+
+        <!-- 4.1 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-4-1">
+              <div class="step-check"><input type="checkbox" id="check-4-1" onchange="updateProgress()"><label for="check-4-1"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">4.1</span>
+                  <span class="step-title">Aller sur vercel.com et Sign Up</span>
+                  <span class="badge badge--you">TOI</span>
+                </div>
+                <div class="step-desc">Ouvre <code>https://vercel.com</code> → "Sign Up" → connecte-toi avec GitHub. Autorise l'accès aux repos.</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="rule" style="grid-column: 1 / -1; margin: 8px 0;">
+
+        <!-- ═══════ PHASE 5 : DÉPLOIEMENT ═══════ -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="folio">Phase 05 — Déployer sur Vercel</div>
+          </div>
+        </div>
+
+        <!-- 5.1 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-5-1">
+              <div class="step-check"><input type="checkbox" id="check-5-1" onchange="updateProgress()"><label for="check-5-1"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">5.1</span>
+                  <span class="step-title">Déployer l'admin panel</span>
+                  <span class="badge badge--you">TOI</span>
+                </div>
+                <div class="step-desc">Vercel → "Add New" → "Project" → <code>sites-clients</code>. Framework: Other, Root: <code>admin</code>, Output: <code>.</code></div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.2 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-5-2">
+              <div class="step-check"><input type="checkbox" id="check-5-2" onchange="updateProgress()"><label for="check-5-2"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">5.2</span>
+                  <span class="step-title">Déployer Site 1 (Green Innovators)</span>
+                  <span class="badge badge--you">TOI</span>
+                </div>
+                <div class="step-desc">Framework: Angular, Root: <code>site-1-green-innovators</code>, Output: <code>dist/app/browser</code></div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.3 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-5-3">
+              <div class="step-check"><input type="checkbox" id="check-5-3" onchange="updateProgress()"><label for="check-5-3"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">5.3</span>
+                  <span class="step-title">Déployer Site 2 (LE GETUP)</span>
+                  <span class="badge badge--you">TOI</span>
+                </div>
+                <div class="step-desc">Framework: Vite, Root: <code>site-2-legetup</code>, Output: <code>dist</code></div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.4 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-5-4">
+              <div class="step-check"><input type="checkbox" id="check-5-4" onchange="updateProgress()"><label for="check-5-4"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">5.4</span>
+                  <span class="step-title">Déployer Site 3 (PGC Cleaners)</span>
+                  <span class="badge badge--you">TOI</span>
+                </div>
+                <div class="step-desc">Framework: Angular, Root: <code>site-3-pgc-cleaners</code>, Output: <code>dist/app/browser</code></div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="rule" style="grid-column: 1 / -1; margin: 8px 0;">
+
+        <!-- ═══════ PHASE 6 : URLs ═══════ -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="folio">Phase 06 — Mettre à jour les URLs</div>
+          </div>
+        </div>
+
+        <!-- 6.1 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-6-1">
+              <div class="step-check"><input type="checkbox" id="check-6-1" onchange="updateProgress()"><label for="check-6-1"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">6.1</span>
+                  <span class="step-title">Donner les 4 URLs à l'IA</span>
+                  <span class="badge badge--you">TOI</span>
+                </div>
+                <div class="step-desc">Colle les 4 URLs Vercel pour mise à jour automatique.</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.2 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-6-2">
+              <div class="step-check"><input type="checkbox" id="check-6-2" onchange="updateProgress()"><label for="check-6-2"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">6.2</span>
+                  <span class="step-title">Mettre à jour admin.js + firebase-config.js</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">Mise à jour des URLs dans <code>admin/js/admin.js</code> et <code>firebase-config.js</code>.</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.3 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-6-3">
+              <div class="step-check"><input type="checkbox" id="check-6-3" onchange="updateProgress()"><label for="check-6-3"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">6.3</span>
+                  <span class="step-title">Mettre à jour les URLs dans Firestore</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">Script Python pour mettre à jour les champs <code>url</code>.</div>
+                <div class="cmd">python firebase_setup.py --status</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.4 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-6-4">
+              <div class="step-check"><input type="checkbox" id="check-6-4" onchange="updateProgress()"><label for="check-6-4"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">6.4</span>
+                  <span class="step-title">Commit + push des mises à jour</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">Commit + push. Vercel redéploie automatiquement.</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="rule" style="grid-column: 1 / -1; margin: 8px 0;">
+
+        <!-- ═══════ PHASE 7 : TESTS ═══════ -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="folio">Phase 07 — Tests &amp; Validation</div>
+          </div>
+        </div>
+
+        <!-- 7.1 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-7-1">
+              <div class="step-check"><input type="checkbox" id="check-7-1" onchange="updateProgress()"><label for="check-7-1"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">7.1</span>
+                  <span class="step-title">Tester le panel admin</span>
+                  <span class="badge badge--you">TOI</span>
+                </div>
+                <div class="step-desc">Ouvre l'URL admin. Vérifie Firebase connecté + 3 cartes.</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7.2 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-7-2">
+              <div class="step-check"><input type="checkbox" id="check-7-2" onchange="updateProgress()"><label for="check-7-2"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">7.2</span>
+                  <span class="step-title">Tester la désactivation</span>
+                  <span class="badge badge--you">TOI</span>
+                </div>
+                <div class="step-desc">Firestore → <code>actif: false</code> → vérifie admin → remets <code>true</code>.</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7.3 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-7-3">
+              <div class="step-check"><input type="checkbox" id="check-7-3" onchange="updateProgress()"><label for="check-7-3"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">7.3</span>
+                  <span class="step-title">Tester les 3 sites</span>
+                  <span class="badge badge--you">TOI</span>
+                </div>
+                <div class="step-desc">Ouvre chaque site. Vérifie aucun lien admin.</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="rule" style="grid-column: 1 / -1; margin: 8px 0;">
+
+        <!-- ═══════ PHASE 8 : FINALISATION ═══════ -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="folio">Phase 08 — Finalisation</div>
+          </div>
+        </div>
+
+        <!-- 8.1 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-8-1">
+              <div class="step-check"><input type="checkbox" id="check-8-1" onchange="updateProgress()"><label for="check-8-1"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">8.1</span>
+                  <span class="step-title">Sécuriser les règles Firestore</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">Règles de sécurité Firestore (lecture seule publique).</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8.2 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-8-2">
+              <div class="step-check"><input type="checkbox" id="check-8-2" onchange="updateProgress()"><label for="check-8-2"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">8.2</span>
+                  <span class="step-title">Mettre à jour CONTEXTE ABSOLUE.txt</span>
+                  <span class="badge badge--auto">AUTO</span>
+                </div>
+                <div class="step-desc">Mise à jour du fichier de contexte avec URLs finales.</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8.3 -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="step" id="step-8-3">
+              <div class="step-check"><input type="checkbox" id="check-8-3" onchange="updateProgress()"><label for="check-8-3"></label></div>
+              <div class="step-content">
+                <div class="step-title-row">
+                  <span class="step-num">8.3</span>
+                  <span class="step-title">Déploiement terminé</span>
+                  <span class="badge badge--you">TOI</span>
+                </div>
+                <div class="step-desc">3 sites en ligne. Activation/désactivation via Firebase.</div>
+                <div class="step-time">⏳ En attente</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="rule rule--accent" style="grid-column: 1 / -1; margin: 24px 0;">
+
+        <!-- ═══════ FOOTER ═══════ -->
+        <div class="band">
+          <div style="grid-column: 1 / -1;">
+            <div class="cap">Manifeste généré le 27/08/2026 — Coche les étapes au fur et à mesure</div>
+          </div>
+        </div>
+
+      </div><!-- .grid -->
+
+      <!-- GRID OVERLAY (same content box!) -->
+      <div class="guides" aria-hidden="true">
+        <div class="cols"></div>
+        <div class="rows"></div>
+        <div class="mline l"></div>
+        <div class="mline r"></div>
       </div>
-    </div>
-  </div>
 
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PHASE 2 : INSTALLATION DES DÉPENDANCES                           -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <div class="phase">
-    <div class="phase-header">
-      <div class="phase-number">2</div>
-      <div class="phase-title">Installation des dépendances</div>
-      <div class="phase-desc">~3 min</div>
-    </div>
-
-    <div class="step" id="step-2-1">
-      <div class="step-check"><input type="checkbox" id="check-2-1" onchange="updateProgress()"><label for="check-2-1"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">2.1</span>
-          <span class="step-title">npm install Site 1 (Angular)</span>
-          <span class="badge badge--auto">AUTO</span>
-        </div>
-        <div class="step-desc">J'installe les dépendances du Site 1 (Angular 21 + Tailwind).</div>
-        <div class="cmd-box">cd site-1-green-innovators && npm install</div>
-        <div class="step-time" id="time-2-1">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-2-2">
-      <div class="step-check"><input type="checkbox" id="check-2-2" onchange="updateProgress()"><label for="check-2-2"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">2.2</span>
-          <span class="step-title">npm install Site 2 (React)</span>
-          <span class="badge badge--auto">AUTO</span>
-        </div>
-        <div class="step-desc">J'installe les dépendances du Site 2 (React 19 + Vite).</div>
-        <div class="cmd-box">cd site-2-legetup && npm install</div>
-        <div class="step-time" id="time-2-2">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-2-3">
-      <div class="step-check"><input type="checkbox" id="check-2-3" onchange="updateProgress()"><label for="check-2-3"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">2.3</span>
-          <span class="step-title">npm install Site 3 (Angular)</span>
-          <span class="badge badge--auto">AUTO</span>
-        </div>
-        <div class="step-desc">J'installe les dépendances du Site 3 (Angular 21 + Tailwind).</div>
-        <div class="cmd-box">cd site-3-pgc-cleaners && npm install</div>
-        <div class="step-time" id="time-2-3">⏳ En attente</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PHASE 3 : TESTS DE BUILD                                          -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <div class="phase">
-    <div class="phase-header">
-      <div class="phase-number">3</div>
-      <div class="phase-title">Vérification des builds</div>
-      <div class="phase-desc">~5 min</div>
-    </div>
-
-    <div class="step" id="step-3-1">
-      <div class="step-check"><input type="checkbox" id="check-3-1" onchange="updateProgress()"><label for="check-3-1"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">3.1</span>
-          <span class="step-title">Build Site 1 (Green Innovators)</span>
-          <span class="badge badge--auto">AUTO</span>
-        </div>
-        <div class="step-desc">Je vérifie que le Site 1 compile sans erreur.</div>
-        <div class="cmd-box">cd site-1-green-innovators && npm run build</div>
-        <div class="step-time" id="time-3-1">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-3-2">
-      <div class="step-check"><input type="checkbox" id="check-3-2" onchange="updateProgress()"><label for="check-3-2"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">3.2</span>
-          <span class="step-title">Build Site 2 (LE GETUP)</span>
-          <span class="badge badge--auto">AUTO</span>
-        </div>
-        <div class="step-desc">Je vérifie que le Site 2 compile sans erreur.</div>
-        <div class="cmd-box">cd site-2-legetup && npm run build</div>
-        <div class="step-time" id="time-3-2">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-3-3">
-      <div class="step-check"><input type="checkbox" id="check-3-3" onchange="updateProgress()"><label for="check-3-3"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">3.3</span>
-          <span class="step-title">Build Site 3 (PGC Cleaners)</span>
-          <span class="badge badge--auto">AUTO</span>
-        </div>
-        <div class="step-desc">Je vérifie que le Site 3 compile sans erreur.</div>
-        <div class="cmd-box">cd site-3-pgc-cleaners && npm run build</div>
-        <div class="step-time" id="time-3-3">⏳ En attente</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PHASE 4 : CRÉER COMPTE VERCEL                                     -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <div class="phase">
-    <div class="phase-header">
-      <div class="phase-number">4</div>
-      <div class="phase-title">Créer un compte Vercel</div>
-      <div class="phase-desc">~3 min</div>
-    </div>
-
-    <div class="step" id="step-4-1">
-      <div class="step-check"><input type="checkbox" id="check-4-1" onchange="updateProgress()"><label for="check-4-1"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">4.1</span>
-          <span class="step-title">Aller sur vercel.com et Sign Up</span>
-          <span class="badge badge--you">TOI</span>
-        </div>
-        <div class="step-desc">Ouvre <code>https://vercel.com</code> → clique "Sign Up" → connecte-toi avec GitHub. Autorise Vercel à accéder à tes repos.</div>
-        <div class="step-time" id="time-4-1">⏳ En attente</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PHASE 5 : DÉPLOYER LES 4 PROJETS                                 -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <div class="phase">
-    <div class="phase-header">
-      <div class="phase-number">5</div>
-      <div class="phase-title">Déployer sur Vercel</div>
-      <div class="phase-desc">~10 min</div>
-    </div>
-
-    <div class="step" id="step-5-1">
-      <div class="step-check"><input type="checkbox" id="check-5-1" onchange="updateProgress()"><label for="check-5-1"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">5.1</span>
-          <span class="step-title">Déployer l'admin panel</span>
-          <span class="badge badge--you">TOI</span>
-        </div>
-        <div class="step-desc">
-          Dans Vercel → "Add New" → "Project" → sélectionne <code>sites-clients</code>.<br>
-          Configure : <strong>Framework Preset</strong> = Other, <strong>Root Directory</strong> = <code>admin</code>, <strong>Build Command</strong> = (vide), <strong>Output Directory</strong> = <code>.</code><br>
-          Clique "Deploy". Copie l'URL donnée.
-        </div>
-        <div class="step-time" id="time-5-1">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-5-2">
-      <div class="step-check"><input type="checkbox" id="check-5-2" onchange="updateProgress()"><label for="check-5-2"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">5.2</span>
-          <span class="step-title">Déployer Site 1 (Green Innovators)</span>
-          <span class="badge badge--you">TOI</span>
-        </div>
-        <div class="step-desc">
-          Même repo → <strong>Root Directory</strong> = <code>site-1-green-innovators</code>, <strong>Framework Preset</strong> = Angular, <strong>Build Command</strong> = <code>npm run build</code>, <strong>Output Directory</strong> = <code>dist/app/browser</code><br>
-          Deploy. Copie l'URL.
-        </div>
-        <div class="step-time" id="time-5-2">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-5-3">
-      <div class="step-check"><input type="checkbox" id="check-5-3" onchange="updateProgress()"><label for="check-5-3"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">5.3</span>
-          <span class="step-title">Déployer Site 2 (LE GETUP)</span>
-          <span class="badge badge--you">TOI</span>
-        </div>
-        <div class="step-desc">
-          <strong>Root Directory</strong> = <code>site-2-legetup</code>, <strong>Framework Preset</strong> = Vite, <strong>Build Command</strong> = <code>npm run build</code>, <strong>Output Directory</strong> = <code>dist</code><br>
-          Deploy. Copie l'URL.
-        </div>
-        <div class="step-time" id="time-5-3">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-5-4">
-      <div class="step-check"><input type="checkbox" id="check-5-4" onchange="updateProgress()"><label for="check-5-4"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">5.4</span>
-          <span class="step-title">Déployer Site 3 (PGC Cleaners)</span>
-          <span class="badge badge--you">TOI</span>
-        </div>
-        <div class="step-desc">
-          <strong>Root Directory</strong> = <code>site-3-pgc-cleaners</code>, <strong>Framework Preset</strong> = Angular, <strong>Build Command</strong> = <code>npm run build</code>, <strong>Output Directory</strong> = <code>dist/app/browser</code><br>
-          Deploy. Copie l'URL.
-        </div>
-        <div class="step-time" id="time-5-4">⏳ En attente</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PHASE 6 : METTRE À JOUR LES URLs                                  -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <div class="phase">
-    <div class="phase-header">
-      <div class="phase-number">6</div>
-      <div class="phase-title">Mettre à jour les URLs</div>
-      <div class="phase-desc">~2 min</div>
-    </div>
-
-    <div class="step" id="step-6-1">
-      <div class="step-check"><input type="checkbox" id="check-6-1" onchange="updateProgress()"><label for="check-6-1"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">6.1</span>
-          <span class="step-title">Donner les 4 URLs à l'IA</span>
-          <span class="badge badge--you">TOI</span>
-        </div>
-        <div class="step-desc">Colle ici les 4 URLs Vercel pour que je mette à jour les fichiers.</div>
-        <div class="step-time" id="time-6-1">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-6-2">
-      <div class="step-check"><input type="checkbox" id="check-6-2" onchange="updateProgress()"><label for="check-6-2"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">6.2</span>
-          <span class="step-title">Mettre à jour admin.js + firebase-config.js</span>
-          <span class="badge badge--auto">AUTO</span>
-        </div>
-        <div class="step-desc">Je mets à jour les URLs dans <code>admin/js/admin.js</code> et <code>admin/js/firebase-config.js</code>.</div>
-        <div class="step-time" id="time-6-2">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-6-3">
-      <div class="step-check"><input type="checkbox" id="check-6-3" onchange="updateProgress()"><label for="check-6-3"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">6.3</span>
-          <span class="step-title">Mettre à jour les URLs dans Firestore</span>
-          <span class="badge badge--auto">AUTO</span>
-        </div>
-        <div class="step-desc">Je lance <code>python firebase_setup.py</code> pour mettre à jour les champs <code>url</code> dans Firestore.</div>
-        <div class="cmd-box">python firebase_setup.py --status</div>
-        <div class="step-time" id="time-6-3">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-6-4">
-      <div class="step-check"><input type="checkbox" id="check-6-4" onchange="updateProgress()"><label for="check-6-4"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">6.4</span>
-          <span class="step-title">Commit + push des mises à jour</span>
-          <span class="badge badge--auto">AUTO</span>
-        </div>
-        <div class="step-desc">Je commit les changements et je push. Vercel redéploie automatiquement.</div>
-        <div class="cmd-box">git add .
-git commit -m "Update URLs to Vercel deployment"
-git push</div>
-        <div class="step-time" id="time-6-4">⏳ En attente</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PHASE 7 : TESTS & VALIDATION                                      -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <div class="phase">
-    <div class="phase-header">
-      <div class="phase-number">7</div>
-      <div class="phase-title">Tests &amp; Validation</div>
-      <div class="phase-desc">~5 min</div>
-    </div>
-
-    <div class="step" id="step-7-1">
-      <div class="step-check"><input type="checkbox" id="check-7-1" onchange="updateProgress()"><label for="check-7-1"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">7.1</span>
-          <span class="step-title">Tester le panel admin</span>
-          <span class="badge badge--you">TOI</span>
-        </div>
-        <div class="step-desc">Ouvre l'URL admin. Vérifie que Firebase est connecté et que les 3 cartes s'affichent.</div>
-        <div class="step-time" id="time-7-1">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-7-2">
-      <div class="step-check"><input type="checkbox" id="check-7-2" onchange="updateProgress()"><label for="check-7-2"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">7.2</span>
-          <span class="step-title">Tester la désactivation d'un site</span>
-          <span class="badge badge--you">TOI</span>
-        </div>
-        <div class="step-desc">Dans Firebase Console → Firestore → <code>sites</code> → change <code>actif</code> à <code>false</code> pour un site. Vérifie dans admin. Remets à <code>true</code>.</div>
-        <div class="step-time" id="time-7-2">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-7-3">
-      <div class="step-check"><input type="checkbox" id="check-7-3" onchange="updateProgress()"><label for="check-7-3"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">7.3</span>
-          <span class="step-title">Tester les 3 sites</span>
-          <span class="badge badge--you">TOI</span>
-        </div>
-        <div class="step-desc">Ouvre chaque site. Vérifie qu'aucun lien vers admin n'existe. Vérifie que tout fonctionne.</div>
-        <div class="step-time" id="time-7-3">⏳ En attente</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PHASE 8 : FINALISATION                                            -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <div class="phase">
-    <div class="phase-header">
-      <div class="phase-number">8</div>
-      <div class="phase-title">Finalisation</div>
-      <div class="phase-desc">~2 min</div>
-    </div>
-
-    <div class="step" id="step-8-1">
-      <div class="step-check"><input type="checkbox" id="check-8-1" onchange="updateProgress()"><label for="check-8-1"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">8.1</span>
-          <span class="step-title">Sécuriser les règles Firestore</span>
-          <span class="badge badge--auto">AUTO</span>
-        </div>
-        <div class="step-desc">Je configure les règles de sécurité Firestore pour bloquer les écritures publiques.</div>
-        <div class="step-time" id="time-8-1">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-8-2">
-      <div class="step-check"><input type="checkbox" id="check-8-2" onchange="updateProgress()"><label for="check-8-2"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">8.2</span>
-          <span class="step-title">Mettre à jour CONTEXTE ABSOLUE.txt</span>
-          <span class="badge badge--auto">AUTO</span>
-        </div>
-        <div class="step-desc">Je mets à jour le fichier de contexte avec les URLs finales et l'historique complet.</div>
-        <div class="step-time" id="time-8-2">⏳ En attente</div>
-      </div>
-    </div>
-
-    <div class="step" id="step-8-3">
-      <div class="step-check"><input type="checkbox" id="check-8-3" onchange="updateProgress()"><label for="check-8-3"></label></div>
-      <div class="step-content">
-        <div class="step-title-row">
-          <span class="step-num">8.3</span>
-          <span class="step-title">✅ Déploiement terminé !</span>
-          <span class="badge badge--you">TOI</span>
-        </div>
-        <div class="step-desc">Les 3 sites sont en ligne. Tu peux activer/désactiver via Firebase Console ou le panel admin.</div>
-        <div class="step-time" id="time-8-3">⏳ En attente</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">
-    <p>Manifeste généré le 27/08/2026 — Coche les étapes au fur et à mesure</p>
-  </div>
+    </div><!-- .wrap -->
+  </section>
 
   <script>
-    const TOTAL_STEPS = 22;
+    /* ═══════════════════════════════════════════════════════════════════
+       TOGGLE GRID — button + 'G' key
+       ═══════════════════════════════════════════════════════════════════ */
+    var btn = document.getElementById('gridToggle');
+    function setGrid(on) {
+      document.body.classList.toggle('grid-on', on);
+      if (btn) {
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        var l = btn.querySelector('.lbl'); if (l) l.textContent = on ? 'Hide grid' : 'Show grid';
+      }
+    }
+    if (btn) btn.addEventListener('click', function() { setGrid(!document.body.classList.contains('grid-on')); });
+    document.addEventListener('keydown', function(e) {
+      if ((e.key === 'g' || e.key === 'G') && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        setGrid(!document.body.classList.contains('grid-on'));
+      }
+    });
 
+    /* Populate overlay column guides (numbered) */
+    document.querySelectorAll('.guides .cols').forEach(function(h) {
+      var n = getComputedStyle(document.documentElement).getPropertyValue('--cols').trim() || '12';
+      for (var i = 1; i <= parseInt(n, 10); i++) {
+        var c = document.createElement('div'); c.className = 'col';
+        var s = document.createElement('span'); s.textContent = i; c.appendChild(s); h.appendChild(c);
+      }
+    });
+
+    /* ═══════════════════════════════════════════════════════════════════
+       PROGRESS
+       ═══════════════════════════════════════════════════════════════════ */
+    var TOTAL_STEPS = 22;
     function updateProgress() {
-      let done = 0;
-      document.querySelectorAll('.step-check input[type="checkbox"]').forEach(cb => {
-        const step = cb.closest('.step');
+      var done = 0;
+      document.querySelectorAll('.step-check input[type="checkbox"]').forEach(function(cb) {
+        var step = cb.closest('.step');
         if (cb.checked) {
           done++;
           step.classList.add('done');
-          const timeEl = step.querySelector('.step-time');
+          var timeEl = step.querySelector('.step-time');
           if (timeEl && !timeEl.classList.contains('done')) {
-            const now = new Date();
-            const ts = now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-            timeEl.textContent = '✅ Terminé le ' + ts;
+            var now = new Date();
+            var ts = now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+            timeEl.textContent = '\u2705 Termin\u00e9 le ' + ts;
             timeEl.classList.add('done');
           }
         } else {
           step.classList.remove('done');
-          const timeEl = step.querySelector('.step-time');
-          if (timeEl) {
-            timeEl.textContent = '⏳ En attente';
+          var timeEl = step.querySelector('.step-time');
+          if (timeEl && !timeEl.dataset.fixed) {
+            timeEl.textContent = '\u23F3 En attente';
             timeEl.classList.remove('done');
           }
         }
       });
-      const pct = Math.round((done / TOTAL_STEPS) * 100);
+      var pct = Math.round((done / TOTAL_STEPS) * 100);
       document.getElementById('progress-fill').style.width = pct + '%';
-      document.getElementById('progress-text').textContent = done + ' / ' + TOTAL_STEPS + ' étapes terminées (' + pct + '%)';
+      document.getElementById('progress-text').textContent = done + ' / ' + TOTAL_STEPS + ' \u00e9tapes \u2014 ' + pct + '%';
     }
+
+    /* Mark pre-checked steps as fixed (don't reset their timestamps) */
+    document.querySelectorAll('.step.done .step-time').forEach(function(el) { el.dataset.fixed = '1'; });
+
     updateProgress();
   </script>
 
