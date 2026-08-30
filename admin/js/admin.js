@@ -78,13 +78,10 @@ function updateSiteStatus(siteId, isActif) {
  * Charge les statuts depuis Firebase
  */
 async function loadSiteStatuses(firebaseModules) {
-  const { collection, getDocs } = firebaseModules;
-  const { db } = await import("./firebase-config.js");
+  const { db, collection, getDocs } = firebaseModules;
 
-  // Si db n'est pas encore dispo, on le récupère
   if (!db) {
     console.warn("[Admin] Firebase non initialisé, mode hors-ligne");
-    // Mode dégradé : tous les sites considérés comme actifs
     SITE_IDS.forEach((id) => updateSiteStatus(id, true));
     return;
   }
