@@ -60,18 +60,13 @@ function updateSiteStatus(siteId, isActif) {
   if (isActif) {
     status.innerHTML = '<span class="badge badge--active">● Actif</span>';
     card.classList.remove("site-card--disabled");
-    btn.href = site.url;
-    btn.onclick = null;
   } else {
     status.innerHTML = '<span class="badge badge--inactive">● Inactif</span>';
     card.classList.add("site-card--disabled");
-    // Au clic → redirige vers error.html
-    btn.href = ERROR_PAGE_URL;
-    btn.onclick = function (e) {
-      e.preventDefault();
-      window.location.href = ERROR_PAGE_URL;
-    };
   }
+  // Le bouton pointe toujours vers le site (le guard côté site gère le 404)
+  btn.href = site.url;
+  btn.onclick = null;
 }
 
 /**
